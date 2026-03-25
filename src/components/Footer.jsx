@@ -4,42 +4,28 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   const year = new Date().getFullYear();
 
-  // Social media links
-  const socialLinks = [
-    { icon: '📘', url: 'https://facebook.com', label: 'Facebook' },
-    { icon: '🐦', url: 'https://twitter.com', label: 'Twitter' },
-    { icon: '📷', url: 'https://instagram.com', label: 'Instagram' },
-    { icon: '🔗', url: 'https://linkedin.com', label: 'LinkedIn' }
-  ];
-
   return (
     <footer className="footer">
       <div className="footer-container">
         {/* Main Footer Grid */}
         <div className="footer-grid">
           
-          {/* Company Info */}
+          {/* Company Info with Logo */}
           <div className="footer-brand">
-            <h3 className="footer-logo">
-              Robinsons
-            </h3>
+            <Link to="/" className="footer-logo-link">
+              <img 
+                src="/Robinsonslogo.png" 
+                alt="Robinsons Logistics" 
+                className="footer-logo-img"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://via.placeholder.com/150x50?text=Robinsons';
+                }}
+              />
+            </Link>
             <p className="footer-description">
               India's trusted end-to-end logistics partner since 1954. Four generations of excellence in air, ocean, and supply chain solutions — 15 offices, 120+ global partners.
             </p>
-            <div className="footer-social">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="footer-social-link"
-                  aria-label={social.label}
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Services */}
