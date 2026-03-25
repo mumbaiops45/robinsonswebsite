@@ -996,7 +996,7 @@ const Hero = () => {
     return () => {
       intervals.forEach(interval => clearInterval(interval));
     };
-  }, []); // Empty dependency array - stats is stable and doesn't change
+  }, [stats]); // Empty dependency array - stats is stable and doesn't change
 
   return (
     <>
