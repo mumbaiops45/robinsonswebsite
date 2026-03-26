@@ -4,7 +4,7 @@ const Certifications = () => {
   const certifications = [
     { logo: '/WACO.png', name: 'WACO' },
     { logo: '/SEO.png', name: 'SEO' },
-    { logo: '/mto-logo.png', name: 'MTO' },
+    { logo: '/mto-logo1.png', name: 'MTO' },
     { logo: '/ISO.png', name: 'ISO 9001' },
     { logo: '/ISO14001-2015.jpg', name: 'ISO 14001' },
     { logo: '/IATA.png', name: 'IATA' },

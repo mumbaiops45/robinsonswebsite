@@ -1,288 +1,811 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import '../App.css';
+
+// import React, { useState, useEffect, useRef } from 'react';
+
+// const Navbar = () => {
+//   const [isHidden, setIsHidden] = useState(false);
+//   const [hasShadow, setHasShadow] = useState(false);
+//   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+//   const lastScrollY = useRef(0);
+//   const mobileMenuRef = useRef(null);
+//   const menuButtonRef = useRef(null);
+
+//   // Scroll handling effect
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       const currentScrollY = window.scrollY;
+//       setIsHidden(currentScrollY > lastScrollY.current && currentScrollY > 80);
+//       setHasShadow(currentScrollY > 10);
+//       lastScrollY.current = currentScrollY;
+//     };
+
+//     // window.addEventListener('scroll', handleScroll);
+//     // return () => window.removeEventListener('scroll', handleScroll);
+//   }, []);
+
+//   // Body scroll lock effect
+//   // useEffect(() => {
+//   //   if (isMobileMenuOpen) {
+//   //     document.body.style.overflow = 'hidden';
+//   //   } else {
+//   //     document.body.style.overflow = 'unset';
+//   //   }
+//   //   return () => {
+//   //     document.body.style.overflow = 'unset';
+//   //   };
+//   // }, [isMobileMenuOpen]);
+
+//   // Click outside and resize effect
+//   useEffect(() => {
+//     const handleClickOutside = (event) => {
+//       if (
+//         isMobileMenuOpen &&
+//         mobileMenuRef.current &&
+//         !mobileMenuRef.current.contains(event.target) &&
+//         menuButtonRef.current &&
+//         !menuButtonRef.current.contains(event.target)
+//       ) {
+//         setIsMobileMenuOpen(false);
+//       }
+//     };
+
+//     const handleResize = () => {
+//       if (window.innerWidth > 1100) {
+//         setIsMobileMenuOpen(false);
+//       }
+//     };
+
+//     document.addEventListener('mousedown', handleClickOutside);
+//     window.addEventListener('resize', handleResize);
+
+//     return () => {
+//       document.removeEventListener('mousedown', handleClickOutside);
+//       window.removeEventListener('resize', handleResize);
+//     };
+//   }, [isMobileMenuOpen]);
+
+//   // Handle smooth scroll to sections
+//   const handleNavClick = (e, sectionId) => {
+//     e.preventDefault();
+//     setIsMobileMenuOpen(false);
+//     const element = document.getElementById(sectionId);
+//     if (element) {
+//       element.scrollIntoView({ behavior: 'smooth' });
+//     }
+//   };
+
+//   // Toggle mobile menu
+//   const toggleMobileMenu = () => {
+//     setIsMobileMenuOpen(!isMobileMenuOpen);
+//   };
+
+//   return (
+//     <>
+//       {/* Embedded CSS for the navbar (only affects this component) */}
+//       <style>{`
+//         /* Reset / base (already in global, but we include here to be safe) */
+//         nav {
+//           position: fixed;
+//           top: 0;
+//           left: 0;
+//           right: 0;
+//           z-index: 500;
+//           height: 62px;
+//           display: flex;
+//           align-items: center;
+//           justify-content: space-between;
+//           padding: 0 48px;
+//           background: rgba(255, 255, 255, 0.97);
+//           border-bottom: 1px solid var(--bd, #d8e4ed);
+//           transition: box-shadow 0.3s, transform 0.35s;
+//         }
+//         nav.hide {
+//           transform: translateY(-100%);
+//         }
+//         nav.shadow {
+//           box-shadow: 0 2px 24px rgba(11, 29, 58, 0.07);
+//         }
+//         .logo {
+//           display: flex;
+//           align-items: center;
+//           background: none;
+//           border: none;
+//           cursor: pointer;
+//           padding: 0;
+//         }
+//         .logo-img {
+//           height: 34px;
+//           width: auto;
+//           display: block;
+//           object-fit: contain;
+//         }
+//         .nav-links {
+//           display: flex;
+//           align-items: center;
+//           gap: 28px;
+//         }
+//         .nav-links a,
+//         .nav-link-btn {
+//           font-size: 0.78rem;
+//           font-weight: 600;
+//           color: var(--ts, #3a6680);
+//           text-decoration: none;
+//           letter-spacing: 0.01em;
+//           transition: color 0.2s;
+//           position: relative;
+//           background: none;
+//           border: none;
+//           cursor: pointer;
+//           padding: 0;
+//         }
+//         .nav-links a::after,
+//         .nav-link-btn::after {
+//           content: '';
+//           position: absolute;
+//           bottom: -4px;
+//           left: 0;
+//           width: 0;
+//           height: 1.5px;
+//           background: var(--g3, #8cb27f);
+//           border-radius: 2px;
+//           transition: width 0.25s;
+//         }
+//         .nav-links a:hover,
+//         .nav-link-btn:hover {
+//           color: var(--n, #093e5d);
+//         }
+//         .nav-links a:hover::after,
+//         .nav-link-btn:hover::after {
+//           width: 100%;
+//         }
+//         .btn-nav {
+//           background: var(--n, #093e5d) !important;
+//           color: #fff !important;
+//           padding: 8px 20px !important;
+//           border-radius: 4px;
+//           font-weight: 700 !important;
+//           transition: background 0.2s !important;
+//         }
+//         .btn-nav:hover {
+//           background: var(--g, #6a9b5a) !important;
+//         }
+//         .btn-nav::after {
+//           display: none !important;
+//         }
+
+//         /* Mobile menu button (hamburger) */
+//         .mobile-menu-btn {
+//           display: none;
+//           flex-direction: column;
+//           justify-content: space-between;
+//           width: 30px;
+//           height: 21px;
+//           background: transparent;
+//           border: none;
+//           cursor: pointer;
+//           padding: 0;
+//           z-index: 1001;
+//           position: relative;
+//         }
+//         .hamburger-line {
+//           width: 100%;
+//           height: 2px;
+//           background: var(--ts, #3a6680);
+//           border-radius: 2px;
+//           transition: all 0.3s ease-in-out;
+//           transform-origin: center;
+//         }
+//         .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+//           transform: translateY(9.5px) rotate(45deg);
+//         }
+//         .mobile-menu-btn.active .hamburger-line:nth-child(2) {
+//           opacity: 0;
+//           transform: scaleX(0);
+//         }
+//         .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+//           transform: translateY(-9.5px) rotate(-45deg);
+//         }
+
+//         /* Mobile navigation menu (slide‑down) */
+//         .mobile-nav {
+//           position: fixed;
+//           top: 62px;
+//           left: 0;
+//           right: 0;
+//           background: rgba(255, 255, 255, 0.98);
+//           backdrop-filter: blur(10px);
+//           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+//           transform: translateY(-120%);
+//           opacity: 0;
+//           transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+//           z-index: 500;
+//           pointer-events: none;
+//           max-height: calc(100vh - 62px);
+         
+//         }
+//         .mobile-nav.open {
+//           transform: translateY(0);
+//           opacity: 1;
+//           pointer-events: auto;
+//         }
+//         .mobile-nav-links {
+//           display: flex;
+//           flex-direction: column;
+//           padding: 20px;
+//           gap: 15px;
+//         }
+//         .mobile-nav-link {
+//           background: none;
+//           border: none;
+//           font-size: 1rem;
+//           font-weight: 600;
+//           color: var(--ts, #3a6680);
+//           padding: 12px 0;
+//           text-align: left;
+//           cursor: pointer;
+//           transition: all 0.2s;
+//           border-bottom: 1px solid var(--bd, #d8e4ed);
+//           width: 100%;
+//         }
+//         .mobile-nav-link:hover {
+//           color: var(--n, #093e5d);
+//           padding-left: 8px;
+//           background: rgba(106, 155, 90, 0.05);
+//         }
+//         .mobile-btn-nav {
+//           background: var(--n, #093e5d);
+//           color: #fff !important;
+//           padding: 12px 20px;
+//           border-radius: 4px;
+//           font-weight: 700;
+//           text-decoration: none;
+//           text-align: center;
+//           margin-top: 10px;
+//           transition: background 0.2s;
+//           display: block;
+//         }
+//         .mobile-btn-nav:hover {
+//           background: var(--g, #6a9b5a);
+//         }
+// .mobile-nav {
+//   width: 100%;
+//   overflow-x: hidden;
+// }
+//         /* Responsive breakpoints */
+//         @media (max-width: 768px) {
+//           nav {
+//             padding: 0 16px !important;
+//           }
+//           .logo-img {
+//             height: 28px;
+//           }
+//           .desktop-nav {
+//             display: none !important;
+//           }
+//           .mobile-menu-btn {
+//             display: flex;
+//           }
+//         }
+
+//         @media (min-width: 1101px) {
+//           .mobile-nav {
+//             display: none;
+//           }
+//           .desktop-nav {
+//             display: flex !important;
+//           }
+//         }
+
+//         @media (max-width: 768px) {
+//           nav {
+//             height: 56px;
+//           }
+//           .mobile-nav {
+//             top: 56px;
+//             max-height: calc(100vh - 56px);
+//           }
+//           .logo-img {
+//             height: 24px;
+//           }
+//           .mobile-nav-link {
+//             font-size: 0.95rem;
+//             padding: 10px 0;
+//           }
+//           .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+//             transform: translateY(7.5px) rotate(45deg);
+//           }
+//           .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+//             transform: translateY(-7.5px) rotate(-45deg);
+//           }
+//         }
+
+//         @media (max-width: 480px) {
+//           .mobile-nav-links {
+//             padding: 16px;
+//             gap: 12px;
+//           }
+//           .mobile-nav-link {
+//             font-size: 0.9rem;
+//             padding: 8px 0;
+//           }
+//           .mobile-btn-nav {
+//             padding: 10px 16px;
+//             font-size: 0.9rem;
+//           }
+//           .mobile-menu-btn {
+//             width: 26px;
+//             height: 18px;
+//           }
+//           .mobile-menu-btn.active .hamburger-line:nth-child(1) {
+//             transform: translateY(8px) rotate(45deg);
+//           }
+//           .mobile-menu-btn.active .hamburger-line:nth-child(3) {
+//             transform: translateY(-8px) rotate(-45deg);
+//           }
+//         }
+//       `}</style>
+
+//       <nav className={`${isHidden ? 'hide' : ''} ${hasShadow ? 'shadow' : ''}`}>
+//         <button 
+//           className="logo" 
+//           onClick={(e) => handleNavClick(e, 'home')}
+//           style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+//         >
+//           <img
+//             src="/logo1.png"
+//             alt="Robinsons Cargo & Logistics"
+//             className="logo-img"
+//           />
+//         </button>
+        
+//         {/* Desktop Navigation */}
+//         <div className="nav-links desktop-nav">
+//           <button 
+//             onClick={(e) => handleNavClick(e, 'about')}
+//             className="nav-link-btn"
+//           >
+//             About
+//           </button>
+//           <button 
+//             onClick={(e) => handleNavClick(e, 'services')}
+//             className="nav-link-btn"
+//           >
+//             Services
+//           </button>
+//           <button 
+//             onClick={(e) => handleNavClick(e, 'industries')}
+//             className="nav-link-btn"
+//           >
+//             Industries
+//           </button>
+//           <button 
+//             onClick={(e) => handleNavClick(e, 'clients')}
+//             className="nav-link-btn"
+//           >
+//             Clients
+//           </button>
+//           <button 
+//             onClick={(e) => handleNavClick(e, 'esg')}
+//             className="nav-link-btn"
+//           >
+//             ESG
+//           </button>
+//           <button 
+//             onClick={(e) => handleNavClick(e, 'offices')}
+//             className="nav-link-btn"
+//           >
+//             Offices
+//           </button>
+//           <a href="#contact" className="btn-nav">
+//             Get in Touch
+//           </a>
+//         </div>
+
+//         {/* Mobile Menu Button */}
+//         <button 
+//           ref={menuButtonRef}
+//           className={`mobile-menu-btn ${isMobileMenuOpen ? 'active' : ''}`}
+//           onClick={toggleMobileMenu}
+//           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+//         >
+//           <span className="hamburger-line"></span>
+//           <span className="hamburger-line"></span>
+//           <span className="hamburger-line"></span>
+//         </button>
+//       </nav>
+
+//       {/* Mobile Navigation Menu */}
+//       <div 
+//         ref={mobileMenuRef}
+//         className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}
+//       >
+//         <div className="mobile-nav-links">
+//           <button 
+//             onClick={(e) => handleNavClick(e, 'about')}
+//             className="mobile-nav-link"
+//           >
+//             About
+//           </button>
+//           <button 
+//             onClick={(e) => handleNavClick(e, 'services')}
+//             className="mobile-nav-link"
+//           >
+//             Services
+//           </button>
+//           <button 
+//             onClick={(e) => handleNavClick(e, 'industries')}
+//             className="mobile-nav-link"
+//           >
+//             Industries
+//           </button>
+//           <button 
+//             onClick={(e) => handleNavClick(e, 'clients')}
+//             className="mobile-nav-link"
+//           >
+//             Clients
+//           </button>
+//           <button 
+//             onClick={(e) => handleNavClick(e, 'esg')}
+//             className="mobile-nav-link"
+//           >
+//             ESG
+//           </button>
+//           <button 
+//             onClick={(e) => handleNavClick(e, 'offices')}
+//             className="mobile-nav-link"
+//           >
+//             Offices
+//           </button>
+//           <a 
+//             href="#contact" 
+//             className="mobile-btn-nav"
+//             onClick={(e) => {
+//               e.preventDefault();
+//               const element = document.getElementById('contact');
+//               if (element) {
+//                 element.scrollIntoView({ behavior: 'smooth' });
+//                 setIsMobileMenuOpen(false);
+//               }
+//             }}
+//           >
+//             Get in Touch
+//           </a>
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default Navbar;
+
+
+
+import React, { useState, useEffect, useRef } from 'react';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null);
-  const location = useLocation();
+  const [isHidden, setIsHidden] = useState(false);
+  const [hasShadow, setHasShadow] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const lastScrollY = useRef(0);
+  const mobileMenuRef = useRef(null);
+  const menuButtonRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      setIsHidden(currentScrollY > lastScrollY.current && currentScrollY > 80);
+      setHasShadow(currentScrollY > 10);
+      lastScrollY.current = currentScrollY;
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu and dropdowns when route changes
   useEffect(() => {
-    setIsOpen(false);
-    setOpenDropdown(null);
-  }, [location]);
-
-  // Close dropdowns when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest('.navbar-dropdown')) {
-        setOpenDropdown(null);
+    const handleClickOutside = (event) => {
+      if (
+        isMobileMenuOpen &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target) &&
+        menuButtonRef.current &&
+        !menuButtonRef.current.contains(event.target)
+      ) {
+        setIsMobileMenuOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
+    const handleResize = () => {
+      if (window.innerWidth > 1100) setIsMobileMenuOpen(false);
     };
-  }, [isOpen]);
+    document.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isMobileMenuOpen]);
 
-  const isActive = (path) => location.pathname === path;
-
-  const handleDropdownMouseEnter = (name) => setOpenDropdown(name);
-  const handleDropdownMouseLeave = () => setOpenDropdown(null);
-
-  const toggleDropdown = (dropdown) => {
-    setOpenDropdown(openDropdown === dropdown ? null : dropdown);
+  const handleNavClick = (e, sectionId) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    const element = document.getElementById(sectionId);
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const servicesItems = [
-    { name: 'Air Imports & Exports', path: '/services/air-freight' },
-    { name: 'Consolidation Services', path: '/services/ocean-freight' },
-    { name: 'Customs Clearance', path: '/services/custom-clearance' },
-    { name: 'Ocean Import & Exports', path: '/services/warehousing' },
-    { name: '3PL', path: '/services/supply-chain' },
-  ];
-
-  const industriesItems = [
-    { name: 'Automotive', path: '/industries/automotive' },
-    { name: 'Aviation & Defense', path: '/industries/healthcare' },
-    { name: 'Engineering', path: '/industries/retail' },
-    { name: 'High-Tech', path: '/industries/manufacturing' },
-    { name: 'Luxury', path: '/industries/oil-gas' },
-    { name: 'Pharma & Healthcare', path: '/industries/aerospace' },
-    { name: 'Project Logistics', path: '/industries/Logistics' },
-    { name: 'Renewable Energy', path: '/industries/Energy' },
-    { name: 'Retail/E-Commerce', path: '/industries/Commerce' },
-
-  ];
-
-  const aboutItems = [
-    { name: 'Company Profile', path: '/about/our-story' },
-    { name: 'Core Values', path: '/about/leadership' },
-    { name: 'Certifications', path: '/about/mission-values' },
-    { name: 'Associations', path: '/about/sustainability' },
-    { name: 'Licenses', path: '/about/global-network' },
-  ];
-
-  const renderDropdown = (key, label, items, wide = false) => (
-    <div
-      className="navbar-dropdown"
-      onMouseEnter={() => handleDropdownMouseEnter(key)}
-      onMouseLeave={handleDropdownMouseLeave}
-    >
-      <button
-        className={`navbar-dropdown-btn ${location.pathname.startsWith('/' + key) ? 'navbar-link-active' : ''}`}
-        onClick={() => toggleDropdown(key)}
-        aria-haspopup="true"
-        aria-expanded={openDropdown === key}
-      >
-        {label}
-        <svg className={`dropdown-chevron ${openDropdown === key ? 'chevron-open' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-      <div className="dropdown-bridge" />
-      <div className={`dropdown-menu ${wide ? 'dropdown-menu-wide' : ''} ${openDropdown === key ? 'dropdown-open' : ''}`}>
-        {items.map((item) => (
-          <Link key={item.name} to={item.path} className="dropdown-item">
-            {item.name}
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
+  const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
 
   return (
-    <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`} role="navigation" aria-label="Main navigation">
-      <div className="navbar-container">
-        <div className="navbar-content">
+    <>
+      <style>{`
+        .rcl-nav {
+          position: fixed;
+          top: 0; left: 0; right: 0;
+          z-index: 500;
+          height: 62px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 48px;
+          background: rgba(255,255,255,0.97);
+          border-bottom: 1px solid var(--bd, #d8e4ed);
+          transition: box-shadow 0.3s, transform 0.35s;
+          box-sizing: border-box;
+        }
+        .rcl-nav.hide  { transform: translateY(-100%); }
+        .rcl-nav.shadow { box-shadow: 0 2px 24px rgba(11,29,58,0.07); }
 
-          {/* Logo */}
-          <Link to="/" className="navbar-logo" aria-label="Robinsons - Home">
-            <img
-              src="/Robinsonslogo.png"
-              alt="Robinsons Logistics"
-              className="navbar-logo-img"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = '/logo-placeholder.png';
-              }}
-            />
-          </Link>
+        /* Logo */
+        .rcl-logo {
+          display: flex;
+          align-items: center;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          flex-shrink: 0;
+        }
+        .rcl-logo-img {
+          height: 34px;
+          width: auto;
+          display: block;
+          object-fit: contain;
+        }
 
-          {/* Desktop Menu */}
-          <div className="navbar-desktop">
-            <Link to="/" className={`navbar-link ${isActive('/') ? 'navbar-link-active' : ''}`}>
-              Home
-            </Link>
+        /* Desktop links */
+        .rcl-desktop-nav {
+          display: flex;
+          align-items: center;
+          gap: 28px;
+        }
+        .rcl-nav-btn {
+          font-size: 0.78rem;
+          font-weight: 600;
+          color: var(--ts, #3a6680);
+          text-decoration: none;
+          letter-spacing: 0.01em;
+          transition: color 0.2s;
+          position: relative;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          font-family: inherit;
+        }
+        .rcl-nav-btn::after {
+          content: '';
+          position: absolute;
+          bottom: -4px; left: 0;
+          width: 0; height: 1.5px;
+          background: var(--g3, #8cb27f);
+          border-radius: 2px;
+          transition: width 0.25s;
+        }
+        .rcl-nav-btn:hover { color: var(--n, #093e5d); }
+        .rcl-nav-btn:hover::after { width: 100%; }
 
-            {renderDropdown('about', 'About Us', aboutItems)}
-            {renderDropdown('services', 'Services', servicesItems, true)}
-            {renderDropdown('industries', 'Industries', industriesItems)}
+        .rcl-btn-cta {
+          background: var(--n, #093e5d) !important;
+          color: #fff !important;
+          padding: 8px 20px;
+          border-radius: 4px;
+          font-size: 0.78rem;
+          font-weight: 700;
+          text-decoration: none;
+          display: inline-block;
+          transition: background 0.2s;
+          border: none;
+          cursor: pointer;
+          font-family: inherit;
+        }
+        .rcl-btn-cta:hover { background: var(--g, #6a9b5a) !important; }
+        .rcl-btn-cta::after { display: none !important; }
 
-            <Link to="/esg" className={`navbar-link ${isActive('/esg') ? 'navbar-link-active' : ''}`}>
-              ESG
-            </Link>
-            <Link to="/careers" className={`navbar-link ${isActive('/careers') ? 'navbar-link-active' : ''}`}>
-              Careers
-            </Link>
-            <Link to="/contact" className="navbar-cta">
-              Contact
-            </Link>
-          </div>
+        /* Hamburger */
+        .rcl-hamburger {
+          display: none;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 28px;
+          height: 20px;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          z-index: 10;
+          flex-shrink: 0;
+        }
+        .rcl-hline {
+          width: 100%;
+          height: 2px;
+          background: var(--ts, #3a6680);
+          border-radius: 2px;
+          transition: all 0.3s ease-in-out;
+          transform-origin: center;
+          display: block;
+        }
+        .rcl-hamburger.active .rcl-hline:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .rcl-hamburger.active .rcl-hline:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .rcl-hamburger.active .rcl-hline:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-          {/* Mobile Menu Button */}
-          <button
-            className="navbar-mobile-btn"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isOpen}
+        /* Mobile nav panel */
+        .rcl-mobile-nav {
+          position: fixed;
+          top: 62px; left: 0; right: 0;
+          background: rgba(255,255,255,0.98);
+          backdrop-filter: blur(10px);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+          transform: translateY(-110%);
+          opacity: 0;
+          transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+          z-index: 499;
+          pointer-events: none;
+          max-height: calc(100vh - 62px);
+          overflow-y: auto;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .rcl-mobile-nav.open {
+          transform: translateY(0);
+          opacity: 1;
+          pointer-events: auto;
+        }
+        .rcl-mobile-links {
+          display: flex;
+          flex-direction: column;
+          padding: 20px 24px;
+          gap: 0;
+        }
+        .rcl-mobile-btn {
+          background: none;
+          border: none;
+          font-size: 0.97rem;
+          font-weight: 600;
+          color: var(--ts, #3a6680);
+          padding: 14px 0;
+          text-align: left;
+          cursor: pointer;
+          transition: all 0.2s;
+          border-bottom: 1px solid var(--bd, #d8e4ed);
+          width: 100%;
+          font-family: inherit;
+          letter-spacing: 0.01em;
+        }
+        .rcl-mobile-btn:last-of-type { border-bottom: none; }
+        .rcl-mobile-btn:hover { color: var(--n, #093e5d); padding-left: 8px; }
+        .rcl-mobile-cta {
+          display: block;
+          background: var(--n, #093e5d);
+          color: #fff;
+          padding: 13px 20px;
+          border-radius: 4px;
+          font-size: 0.9rem;
+          font-weight: 700;
+          text-align: center;
+          text-decoration: none;
+          margin-top: 16px;
+          transition: background 0.2s;
+          font-family: inherit;
+        }
+        .rcl-mobile-cta:hover { background: var(--g, #6a9b5a); }
+
+        /* Breakpoints */
+        @media (max-width: 1100px) {
+          .rcl-desktop-nav { display: none !important; }
+          .rcl-hamburger { display: flex; }
+          .rcl-nav { padding: 0 20px; }
+        }
+        @media (min-width: 1101px) {
+          .rcl-mobile-nav { display: none; }
+          .rcl-desktop-nav { display: flex !important; }
+        }
+        @media (max-width: 768px) {
+          .rcl-nav {
+            height: 56px;
+            padding: 0 16px;
+          }
+          .rcl-logo-img { height: 28px; }
+          .rcl-mobile-nav {
+            top: 56px;
+            max-height: calc(100vh - 56px);
+          }
+          .rcl-mobile-btn { font-size: 0.9rem; padding: 12px 0; }
+          .rcl-hamburger.active .rcl-hline:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+          .rcl-hamburger.active .rcl-hline:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        }
+        @media (max-width: 480px) {
+          .rcl-nav { padding: 0 14px; }
+          .rcl-logo-img { height: 24px; }
+          .rcl-mobile-links { padding: 16px 18px; }
+          .rcl-mobile-btn { font-size: 0.85rem; padding: 11px 0; }
+          .rcl-mobile-cta { padding: 11px 16px; font-size: 0.85rem; }
+          .rcl-hamburger { width: 24px; height: 18px; }
+          .rcl-hamburger.active .rcl-hline:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+          .rcl-hamburger.active .rcl-hline:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+        }
+      `}</style>
+
+      <nav className={`rcl-nav${isHidden ? ' hide' : ''}${hasShadow ? ' shadow' : ''}`}>
+        <button
+          className="rcl-logo"
+          onClick={(e) => handleNavClick(e, 'home')}
+          aria-label="Go to home"
+        >
+          <img src="/logo1.png" alt="Robinsons Cargo & Logistics" className="rcl-logo-img" />
+        </button>
+
+        {/* Desktop Nav */}
+        <div className="rcl-desktop-nav">
+          {['about', 'services', 'industries', 'clients', 'esg', 'offices'].map((id) => (
+            <button key={id} onClick={(e) => handleNavClick(e, id)} className="rcl-nav-btn">
+              {id.charAt(0).toUpperCase() + id.slice(1)}
+            </button>
+          ))}
+          <a
+            href="#contact"
+            className="rcl-btn-cta"
+            onClick={(e) => handleNavClick(e, 'contact')}
           >
-            <span className={`hamburger-icon ${isOpen ? 'open' : ''}`}>
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </button>
+            Get in Touch
+          </a>
         </div>
 
-        {/* Mobile Menu Overlay */}
-        {isOpen && (
-          <>
-            <div className="navbar-mobile-overlay" onClick={() => setIsOpen(false)} />
-            <div className="navbar-mobile" role="dialog" aria-label="Mobile navigation">
-              <div className="navbar-mobile-header">
-                <span className="navbar-mobile-title">Menu</span>
-                <button className="navbar-mobile-close" onClick={() => setIsOpen(false)} aria-label="Close menu">
-                  ✕
-                </button>
-              </div>
-              <div className="navbar-mobile-menu">
-                <Link
-                  to="/"
-                  className={`navbar-mobile-link ${isActive('/') ? 'navbar-mobile-link-active' : ''}`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Home
-                </Link>
+        {/* Hamburger */}
+        <button
+          ref={menuButtonRef}
+          className={`rcl-hamburger${isMobileMenuOpen ? ' active' : ''}`}
+          onClick={toggleMobileMenu}
+          aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+        >
+          <span className="rcl-hline"></span>
+          <span className="rcl-hline"></span>
+          <span className="rcl-hline"></span>
+        </button>
+      </nav>
 
-                {/* About Mobile */}
-                <div className="navbar-mobile-dropdown">
-                  <button
-                    className="navbar-mobile-dropdown-btn"
-                    onClick={() => toggleDropdown('about-mobile')}
-                    aria-expanded={openDropdown === 'about-mobile'}
-                  >
-                    <span className={location.pathname.startsWith('/about') ? 'text-accent' : ''}>
-                      About Us
-                    </span>
-                    <svg className={`mobile-chevron ${openDropdown === 'about-mobile' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  {openDropdown === 'about-mobile' && (
-                    <div className="navbar-mobile-submenu">
-                      {aboutItems.map((item) => (
-                        <Link key={item.name} to={item.path} className="navbar-mobile-sub-link" onClick={() => setIsOpen(false)}>
-                          {item.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Services Mobile */}
-                <div className="navbar-mobile-dropdown">
-                  <button
-                    className="navbar-mobile-dropdown-btn"
-                    onClick={() => toggleDropdown('services-mobile')}
-                    aria-expanded={openDropdown === 'services-mobile'}
-                  >
-                    <span className={location.pathname.startsWith('/services') ? 'text-accent' : ''}>
-                      Services
-                    </span>
-                    <svg className={`mobile-chevron ${openDropdown === 'services-mobile' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  {openDropdown === 'services-mobile' && (
-                    <div className="navbar-mobile-submenu">
-                      {servicesItems.map((item) => (
-                        <Link key={item.name} to={item.path} className="navbar-mobile-sub-link" onClick={() => setIsOpen(false)}>
-                          {item.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Industries Mobile */}
-                <div className="navbar-mobile-dropdown">
-                  <button
-                    className="navbar-mobile-dropdown-btn"
-                    onClick={() => toggleDropdown('industries-mobile')}
-                    aria-expanded={openDropdown === 'industries-mobile'}
-                  >
-                    <span className={location.pathname.startsWith('/industries') ? 'text-accent' : ''}>
-                      Industries
-                    </span>
-                    <svg className={`mobile-chevron ${openDropdown === 'industries-mobile' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  {openDropdown === 'industries-mobile' && (
-                    <div className="navbar-mobile-submenu">
-                      {industriesItems.map((item) => (
-                        <Link key={item.name} to={item.path} className="navbar-mobile-sub-link" onClick={() => setIsOpen(false)}>
-                          {item.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                <Link
-                  to="/esg"
-                  className={`navbar-mobile-link ${isActive('/esg') ? 'navbar-mobile-link-active' : ''}`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  ESG
-                </Link>
-                <Link
-                  to="/careers"
-                  className={`navbar-mobile-link ${isActive('/careers') ? 'navbar-mobile-link-active' : ''}`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Careers
-                </Link>
-                <Link to="/contact" className="navbar-mobile-cta" onClick={() => setIsOpen(false)}>
-                  Contact
-                </Link>
-              </div>
-            </div>
-          </>
-        )}
+      {/* Mobile Nav Panel */}
+      <div
+        ref={mobileMenuRef}
+        className={`rcl-mobile-nav${isMobileMenuOpen ? ' open' : ''}`}
+        aria-hidden={!isMobileMenuOpen}
+      >
+        <div className="rcl-mobile-links">
+          {['about', 'services', 'industries', 'clients', 'esg', 'offices'].map((id) => (
+            <button key={id} onClick={(e) => handleNavClick(e, id)} className="rcl-mobile-btn">
+              {id.charAt(0).toUpperCase() + id.slice(1)}
+            </button>
+          ))}
+          <a
+            href="#contact"
+            className="rcl-mobile-cta"
+            onClick={(e) => {
+              e.preventDefault();
+              setIsMobileMenuOpen(false);
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            Get in Touch
+          </a>
+        </div>
       </div>
-    </nav>
+    </>
   );
 };
 
