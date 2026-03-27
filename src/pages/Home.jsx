@@ -538,6 +538,8 @@
 
 // export default Hero;
 
+
+
 import React, { useEffect, useRef } from 'react';
 
 const Hero = () => {

@@ -361,6 +361,8 @@ nav.shadow {
 }
 .ab-r {
   padding: 72px 48px 72px 52px;
+ 
+
   background: var(--n);
   position: relative;
   overflow: hidden;

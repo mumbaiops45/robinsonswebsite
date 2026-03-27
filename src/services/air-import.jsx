@@ -1,0 +1,403 @@
+import React from 'react';
+
+const AirFreight = () => {
+  return (
+    <>
+      <style>{`
+        .air-freight-page {
+          font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          color: #1a2a3a;
+          background: #ffffff;
+          line-height: 1.5;
+        }
+
+        /* Hero section – background image stored directly in public/ */
+        .air-hero {
+          position: relative;
+          background: 
+                      url('/airplaneimport.jpg') center/cover no-repeat;   /* <-- corrected */
+          color: white;
+          padding: 120px 24px 100px;
+          text-align: center;
+          margin-top: 62px;
+        }
+        @media (max-width: 768px) {
+          .air-hero {
+            margin-top: 56px;
+            padding: 80px 20px 60px;
+          }
+        }
+        .air-hero h1 {
+          font-size: 3rem;
+          margin-bottom: 1rem;
+          font-weight: 700;
+          letter-spacing: -0.02em;
+          text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .air-hero .tagline {
+          font-size: 1.5rem;
+          font-weight: 400;
+          margin-bottom: 1.5rem;
+          text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        .air-hero .description {
+          max-width: 800px;
+          margin: 0 auto;
+          font-size: 1.125rem;
+          line-height: 1.6;
+          background: rgba(0,0,0,0.3);
+          padding: 1rem;
+          border-radius: 8px;
+        }
+
+        .container {
+          max-width: 1280px;
+          margin: 0 auto;
+          padding: 0 24px;
+        }
+
+        .section-title {
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: #0b2e3e;
+          text-align: center;
+          margin-bottom: 1rem;
+        }
+        .section-subtitle {
+          text-align: center;
+          color: #4a627a;
+          max-width: 800px;
+          margin: 0 auto 3rem auto;
+          font-size: 1.125rem;
+        }
+
+        /* Overview section */
+        .overview-section {
+          padding: 80px 0;
+          background: #fff;
+        }
+        .overview-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+          align-items: center;
+        }
+        .overview-content p {
+          font-size: 1.125rem;
+          color: #2c3e4e;
+          line-height: 1.6;
+        }
+        .overview-image {
+          border-radius: 1rem;
+          overflow: hidden;
+          box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+        }
+        .overview-image img {
+          width: 100%;
+          height: auto;
+          display: block;
+          transition: transform 0.3s ease;
+        }
+        .overview-image:hover img {
+          transform: scale(1.02);
+        }
+
+        /* Import / Export section */
+        .import-export-section {
+          background: #f8fafc;
+          padding: 80px 0;
+        }
+        .import-export-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+        }
+        .service-card {
+          background: white;
+          border-radius: 1rem;
+          overflow: hidden;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+          transition: transform 0.3s ease;
+        }
+        .service-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+        .service-card-image {
+          height: 350px;
+          overflow: hidden;
+        }
+        .service-card-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+        .service-card:hover .service-card-image img {
+          transform: scale(1.05);
+        }
+        .service-card-content {
+          padding: 1.5rem;
+        }
+        .service-card h3 {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #1b4d6e;
+          margin-bottom: 1rem;
+        }
+        .service-card ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        .service-card li {
+          padding: 0.5rem 0;
+          color: #4a627a;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        .service-card li::before {
+          content: "✓";
+          color: #6a9b5a;
+          font-weight: bold;
+        }
+
+        /* Features grid (Why Choose) */
+        .features-section {
+          background: #fff;
+          padding: 80px 0;
+        }
+        .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 2rem;
+        }
+        .feature-card {
+          background: white;
+          border-radius: 1rem;
+          padding: 1.5rem;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+          transition: all 0.3s ease;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+        }
+        .feature-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 4px;
+          background: linear-gradient(90deg, #0b2e3e, #6a9b5a);
+          transform: scaleX(0);
+          transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+        .feature-card:hover::before {
+          transform: scaleX(1);
+        }
+        .feature-icon {
+          font-size: 2.5rem;
+          margin-bottom: 1rem;
+          display: inline-block;
+          background: #f0f4f9;
+          padding: 0.75rem;
+          border-radius: 50%;
+          width: 70px;
+          height: 70px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease;
+        }
+        .feature-card:hover .feature-icon {
+          background: #e6edf5;
+          transform: scale(1.05);
+        }
+        .feature-card h3 {
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: #1b4d6e;
+          margin-bottom: 0.75rem;
+        }
+        .feature-card p {
+          color: #4a627a;
+          font-size: 0.95rem;
+          line-height: 1.5;
+        }
+
+        /* CTA section */
+        .cta-section {
+          background: #0b2e3e;
+          color: white;
+          padding: 80px 0;
+          text-align: center;
+        }
+        .cta-section h2 {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+        }
+        .cta-section p {
+          max-width: 600px;
+          margin: 0 auto 2rem auto;
+          font-size: 1.125rem;
+        }
+        .cta-button {
+          display: inline-block;
+          background: #6a9b5a;
+          color: white;
+          padding: 12px 32px;
+          border-radius: 4px;
+          text-decoration: none;
+          font-weight: 600;
+          transition: background 0.2s;
+        }
+        .cta-button:hover {
+          background: #5a8b4a;
+        }
+
+        @media (max-width: 768px) {
+          .air-hero h1 { font-size: 2.2rem; }
+          .air-hero .tagline { font-size: 1.2rem; }
+          .section-title { font-size: 2rem; }
+          .container { padding: 0 20px; }
+          .overview-grid { grid-template-columns: 1fr; gap: 2rem; }
+          .import-export-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+        @media (max-width: 480px) {
+          .air-hero h1 { font-size: 1.8rem; }
+          .section-title { font-size: 1.8rem; }
+        }
+      `}</style>
+
+      <div className="air-freight-page">
+        {/* Hero Section – background image from public/airplaneimport.jpg */}
+        <div className="air-hero">
+          <div className="container">
+            <h1>Air Freight Services</h1>
+            <div className="tagline">Fast, Reliable Global Air Cargo</div>
+            <div className="description">
+              Robinsons offers comprehensive air freight import and export solutions. Whether you need urgent shipments, time‑sensitive materials, or high‑value goods, our global network ensures your cargo reaches its destination quickly and securely.
+            </div>
+          </div>
+        </div>
+
+        {/* Overview Section */}
+        <div className="overview-section">
+          <div className="container">
+            <div className="overview-grid">
+              <div className="overview-content">
+                <h2 className="section-title" style={{ textAlign: 'left' }}>Global Air Freight Expertise</h2>
+                <p>
+                  With strategic partnerships with major airlines and a dedicated team, Robinsons delivers tailored air freight solutions. From door‑to‑door delivery to charter services, we manage every detail – ensuring your cargo moves smoothly across borders.
+                </p>
+                <p style={{ marginTop: '1rem' }}>
+                  Our end‑to‑end visibility platform gives you real‑time tracking and proactive alerts, so you always know where your shipment is. For imports, exports, or cross‑trade, we simplify the complexities of international air freight.
+                </p>
+              </div>
+              <div className="overview-image">
+                <img src="/air-freight1.jpg" alt="Air cargo loading" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Import & Export Section */}
+        <div className="import-export-section">
+          <div className="container">
+            <h2 className="section-title">Air Freight Import & Export Services</h2>
+            <div className="section-subtitle">
+              End‑to‑end solutions tailored to your supply chain needs
+            </div>
+            <div className="import-export-grid">
+              {/* Import Card */}
+              <div className="service-card">
+                <div className="service-card-image">
+                  <img src="/import.png" alt="Air freight import" />
+                </div>
+                <div className="service-card-content">
+                  <h3>Air Freight Import</h3>
+                  <ul>
+                    <li>Customs clearance & compliance</li>
+                    <li>Warehousing & distribution</li>
+                    <li>Last‑mile delivery to your door</li>
+                    <li>Duty drawback & tax management</li>
+                    <li>Consolidation & de‑consolidation</li>
+                    <li>24/7 tracking & proactive alerts</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Export Card */}
+              <div className="service-card">
+                <div className="service-card-image">
+                  <img src="/export.jpg" alt="Air freight export" />
+                </div>
+                <div className="service-card-content">
+                  <h3>Air Freight Export</h3>
+                  <ul>
+                    <li>Export documentation & licensing</li>
+                    <li>Origin handling & consolidation</li>
+                    <li>Charter & scheduled flight options</li>
+                    <li>Dangerous goods handling</li>
+                    <li>Pharmaceutical & cold chain solutions</li>
+                    <li>Insurance & risk management</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Why Choose Robinsons Section */}
+        <div className="features-section">
+          <div className="container">
+            <h2 className="section-title">Why Choose Robinsons Air Freight?</h2>
+            <div className="section-subtitle">We deliver speed, security, and peace of mind</div>
+            <div className="features-grid">
+              <div className="feature-card">
+                <div className="feature-icon">✈️</div>
+                <h3>Global Network</h3>
+                <p>Direct partnerships with over 50 airlines covering all major trade lanes.</p>
+              </div>
+              <div className="feature-card">
+                <div className="feature-icon">⏱️</div>
+                <h3>Time‑Critical Delivery</h3>
+                <p>Same‑day, next‑flight‑out, and charter options for urgent shipments.</p>
+              </div>
+              <div className="feature-card">
+                <div className="feature-icon">🔒</div>
+                <h3>Secure Handling</h3>
+                <p>Enhanced security for high‑value, fragile, or sensitive cargo.</p>
+              </div>
+              <div className="feature-card">
+                <div className="feature-icon">📊</div>
+                <h3>Real‑Time Visibility</h3>
+                <p>24/7 tracking and proactive notifications via our digital platform.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="cta-section">
+          <div className="container">
+            <h2>Ready to move your cargo by air?</h2>
+            <p>Contact our air freight specialists for a customised solution.</p>
+            <a href="#contact" className="cta-button" onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}>Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default AirFreight;
