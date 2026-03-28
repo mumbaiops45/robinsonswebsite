@@ -2806,14 +2806,14 @@ const Navbar = () => {
   }, [isMobileMenuOpen]);
 
   // Smooth scroll to section (for non‑page links)
-  const handleNavClick = (e, sectionId) => {
-    e.preventDefault();
-    setIsMobileMenuOpen(false);
-    setIsMobileIndustriesOpen(false);
-    setIsMobileServicesOpen(false);
-    const element = document.getElementById(sectionId);
-    if (element) element.scrollIntoView({ behavior: 'smooth' });
-  };
+  // const handleNavClick = (e, sectionId) => {
+  //   e.preventDefault();
+  //   setIsMobileMenuOpen(false);
+  //   setIsMobileIndustriesOpen(false);
+  //   setIsMobileServicesOpen(false);
+  //   const element = document.getElementById(sectionId);
+  //   if (element) element.scrollIntoView({ behavior: 'smooth' });
+  // };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
@@ -3154,11 +3154,16 @@ const Navbar = () => {
 
           <Link to="/esg" className="rcl-nav-btn">ESG</Link>
           <Link to="/clients" className="rcl-nav-btn">Client</Link>
-          <button onClick={(e) => handleNavClick(e, 'offices')} className="rcl-nav-btn">Offices</button>
+          <Link to="/officespage" className="rcl-nav-btn">Offices</Link>
 
+          {/* <button onClick={(e) => handleNavClick(e, 'offices')} className="rcl-nav-btn">Offices</button> */}
+          <Link to="/contact" className="rcl-btn-cta">
+            Get in Touch
+          </Link>
+          {/* 
           <a href="#contact" className="rcl-btn-cta" onClick={(e) => handleNavClick(e, 'contact')}>
             Get in Touch
-          </a>
+          </a> */}
         </div>
 
         {/* Hamburger button */}
@@ -3224,13 +3229,17 @@ const Navbar = () => {
 
           <Link to="/esg" className="rcl-mobile-btn" onClick={() => setIsMobileMenuOpen(false)}>ESG</Link>
           <Link to="/clients" className="rcl-mobile-btn" onClick={() => setIsMobileMenuOpen(false)}>Client</Link>
-          <button onClick={(e) => handleNavClick(e, 'offices')} className="rcl-mobile-btn">Offices</button>
+          <Link to="/officespage" className="rcl-mobile-btn" onClick={() => setIsMobileMenuOpen(false)}>Offices</Link>
 
-          <a href="#contact" className="rcl-mobile-cta" onClick={(e) => {
+          {/* <button onClick={(e) => handleNavClick(e, 'offices')} className="rcl-mobile-btn">Offices</button> */}
+          <Link to="/contact" className="rcl-mobile-cta" onClick={() => setIsMobileMenuOpen(false)}>
+            Get in Touch
+          </Link>
+          {/* <a href="#contact" className="rcl-mobile-cta" onClick={(e) => {
             e.preventDefault();
             setIsMobileMenuOpen(false);
             document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-          }}>Get in Touch</a>
+          }}>Get in Touch</a> */}
         </div>
       </div>
     </>
