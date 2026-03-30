@@ -1,6 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const AirFreight = () => {
+const navigate = useNavigate();
+
   return (
     <>
       <style>{`
@@ -12,15 +16,59 @@ const AirFreight = () => {
         }
 
         /* Hero section – background image stored directly in public/ */
-        .air-hero {
-          position: relative;
-          background: 
-                      url('/airplaneimport.jpg') center/cover no-repeat;   /* <-- corrected */
-          color: white;
-          padding: 120px 24px 100px;
-          text-align: center;
-          margin-top: 62px;
-        }
+       .air-hero {
+  position: relative;
+  background: url('/airplaneimport.jpg') center/cover no-repeat;
+  color: white;
+  padding: 120px 24px 100px;
+  text-align: center;
+  margin-top: 62px;
+}
+
+/* Dark overlay to improve text contrast */
+.air-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed (0.4 – 0.7) */
+  z-index: 1;
+}
+
+/* Ensure text sits above the overlay */
+.air-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.air-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.air-hero .tagline {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.air-hero .description {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  background: rgba(0, 0, 0, 0.55);  /* Darker background for readability */
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+          
         @media (max-width: 768px) {
           .air-hero {
             margin-top: 56px;
@@ -387,13 +435,15 @@ const AirFreight = () => {
         {/* Call to Action */}
         <div className="cta-section">
           <div className="container">
-            <h2>Ready to move your cargo by air?</h2>
-            <p>Contact our air freight specialists for a customised solution.</p>
-            <a href="#contact" className="cta-button" onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-            }}>Get in Touch</a>
-          </div>
+        <h2>Ready to move your cargo by air?</h2>
+        <p>Contact our air freight specialists for a customised solution.</p>
+        <button
+          className="cta-button"
+          onClick={() => navigate('/contact')}
+        >
+          Get in Touch
+        </button>
+      </div>
         </div>
       </div>
     </>

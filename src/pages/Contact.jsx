@@ -10,64 +10,85 @@ const Contact = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
 
-  const validate = () => {
+  // Helper: validate a single field
+  const validateField = (name, value) => {
+    switch (name) {
+      case 'firstName':
+        if (!value.trim()) return 'First name is required';
+        if (value.trim().length < 2) return 'First name must be at least 2 characters';
+        if (!/^[A-Za-z\s]+$/.test(value.trim())) return 'First name can only contain letters and spaces';
+        return '';
+      case 'lastName':
+        if (!value.trim()) return 'Last name is required';
+        if (value.trim().length < 2) return 'Last name must be at least 2 characters';
+        if (!/^[A-Za-z\s]+$/.test(value.trim())) return 'Last name can only contain letters and spaces';
+        return '';
+      case 'email':
+        if (!value.trim()) return 'Email is required';
+        const emailRegex = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
+        if (!emailRegex.test(value.trim())) return 'Please enter a valid email address';
+        return '';
+      case 'phone':
+        const digits = value.replace(/\D/g, '');
+        if (!digits) return 'Phone number is required';
+        if (digits.length !== 10) return 'Phone number must be exactly 10 digits';
+        return '';
+      case 'message':
+        if (!value.trim()) return 'Message is required';
+        if (value.trim().length < 10) return 'Message must be at least 10 characters';
+        return '';
+      default:
+        return '';
+    }
+  };
+
+  // Validate all fields
+  const validateAll = () => {
     const newErrors = {};
-
-    // First Name – required, no numbers
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = 'First name is required';
-    } else if (/\d/.test(formData.firstName)) {
-      newErrors.firstName = 'First name cannot contain numbers';
-    }
-
-    // Last Name – required, no numbers
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = 'Last name is required';
-    } else if (/\d/.test(formData.lastName)) {
-      newErrors.lastName = 'Last name cannot contain numbers';
-    }
-
-    // Email – required, valid email format
-    const emailRegex = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
-    }
-
-    // Phone – exactly 10 digits, no spaces
-    const phoneDigits = formData.phone.replace(/\s/g, '');
-    if (!phoneDigits) {
-      newErrors.phone = 'Phone number is required';
-    } else if (!/^\d{10}$/.test(phoneDigits)) {
-      newErrors.phone = 'Phone number must be exactly 10 digits';
-    }
-
-    // Message – at least 10 characters
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters';
-    }
-
+    Object.keys(formData).forEach(field => {
+      const error = validateField(field, formData[field]);
+      if (error) newErrors[field] = error;
+    });
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+  // Handle input changes – allow only digits for phone
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error for this field when user starts typing
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }));
+    let newValue = value;
+
+    if (name === 'phone') {
+      newValue = value.replace(/\D/g, ''); // strip non-digits
+      if (newValue.length > 10) newValue = newValue.slice(0, 10);
     }
+
+    setFormData(prev => ({ ...prev, [name]: newValue }));
+
+    // Clear error for this field while typing
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  // Handle blur – validate the field
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    setTouched(prev => ({ ...prev, [name]: true }));
+    const error = validateField(name, value);
+    setErrors(prev => ({ ...prev, [name]: error }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) {
-      // Here you would send the data to your backend
+    // Mark all fields as touched to show errors
+    const allTouched = {};
+    Object.keys(formData).forEach(field => { allTouched[field] = true; });
+    setTouched(allTouched);
+
+    if (validateAll()) {
       console.log('Form submitted:', formData);
       alert('Thank you! We will get back to you soon.');
       setFormData({
@@ -78,6 +99,7 @@ const Contact = () => {
         message: '',
       });
       setErrors({});
+      setTouched({});
     }
   };
 
@@ -91,7 +113,6 @@ const Contact = () => {
           line-height: 1.5;
         }
 
-        /* Hero section */
         .contact-hero {
           background: linear-gradient(135deg, #0b2e3e 0%, #1b4d6e 100%);
           color: white;
@@ -131,7 +152,6 @@ const Contact = () => {
           padding: 0 24px;
         }
 
-        /* Contact section */
         .contact-section {
           padding: 80px 0;
           background: #fff;
@@ -142,7 +162,6 @@ const Contact = () => {
           gap: 4rem;
         }
 
-        /* Form styles */
         .contact-form h2 {
           font-size: 1.8rem;
           font-weight: 700;
@@ -198,7 +217,6 @@ const Contact = () => {
           background: #6a9b5a;
         }
 
-        /* Contact info */
         .contact-info h2 {
           font-size: 1.8rem;
           font-weight: 700;
@@ -255,10 +273,9 @@ const Contact = () => {
         <div className="contact-section">
           <div className="container">
             <div className="contact-grid">
-              {/* Contact Form */}
               <div className="contact-form">
                 <h2>Send us a message</h2>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} noValidate>
                   <div className="form-row">
                     <div className="form-group">
                       <label>First Name *</label>
@@ -267,8 +284,11 @@ const Contact = () => {
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       />
-                      {errors.firstName && <div className="error-message">{errors.firstName}</div>}
+                      {touched.firstName && errors.firstName && (
+                        <div className="error-message">{errors.firstName}</div>
+                      )}
                     </div>
                     <div className="form-group">
                       <label>Last Name *</label>
@@ -277,8 +297,11 @@ const Contact = () => {
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                       />
-                      {errors.lastName && <div className="error-message">{errors.lastName}</div>}
+                      {touched.lastName && errors.lastName && (
+                        <div className="error-message">{errors.lastName}</div>
+                      )}
                     </div>
                   </div>
                   <div className="form-group">
@@ -288,8 +311,11 @@ const Contact = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                     />
-                    {errors.email && <div className="error-message">{errors.email}</div>}
+                    {touched.email && errors.email && (
+                      <div className="error-message">{errors.email}</div>
+                    )}
                   </div>
                   <div className="form-group">
                     <label>Phone Number *</label>
@@ -298,9 +324,12 @@ const Contact = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       placeholder="10-digit number"
                     />
-                    {errors.phone && <div className="error-message">{errors.phone}</div>}
+                    {touched.phone && errors.phone && (
+                      <div className="error-message">{errors.phone}</div>
+                    )}
                   </div>
                   <div className="form-group">
                     <label>Your Message *</label>
@@ -309,14 +338,16 @@ const Contact = () => {
                       rows="5"
                       value={formData.message}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                     />
-                    {errors.message && <div className="error-message">{errors.message}</div>}
+                    {touched.message && errors.message && (
+                      <div className="error-message">{errors.message}</div>
+                    )}
                   </div>
                   <button type="submit" className="btn-submit">Send Message</button>
                 </form>
               </div>
 
-              {/* Contact Info */}
               <div className="contact-info">
                 <h2>Contact Information</h2>
                 <div className="info-card">
@@ -328,7 +359,6 @@ const Contact = () => {
                       15/17 Adi Marzban Path,<br />
                       Canara Bank Building 1st Floor,<br />
                       Ballard Estate, Mumbai – 400001, India.
-
                     </div>
                   </div>
                   <div className="info-item">

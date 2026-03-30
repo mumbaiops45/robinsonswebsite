@@ -1,515 +1,3 @@
-// // // import React, { useState } from 'react';
-// // // import './Clients.css';
-
-// // // const Clients = () => {
-// // //   const [activeTab, setActiveTab] = useState('lux');
-
-// // //   const tabs = [
-// // //     { id: 'lux', label: 'Luxury' },
-// // //     { id: 'auto', label: 'Automotive & Eng.' },
-// // //     { id: 'aero', label: 'Aerospace & Defense' },
-// // //     { id: 'pharma', label: 'Pharma & Biotech' },
-// // //     { id: 'other', label: 'Others' },
-// // //   ];
-
-// // //   const clientsData = {
-// // //     lux: ['ROLEX', 'BVLGARI', 'CARTIER', 'CHOPARD GENÈVE', 'BREITLING 1884', 'ETHOS WATCH', 'RIMOWA', 'FRANCK MULLER', 'RICHEMONT', '+More Luxury'],
-// // //     auto: ['TIMKEN', 'WIPRO INFRA ENG.', 'HILTI', 'MARUTI SUZUKI', 'BERGEN PIPE', 'ANDRITZ', 'RICE LAKE', 'ASHIRVAD PIPES', 'HAGER', 'OERLIKON BALZERS'],
-// // //     aero: ['FOXCONN', 'PEGATRON', 'TATA ELECTRONICS', 'PIXXEL', 'GALAXEYE', 'DHRUVA SPACE', 'PARAS DEFENCE', 'NAVAL GROUP', 'DIGANTARA', 'ETHEREAL X'],
-// // //     pharma: ['AUROBINDO', 'TRANSASIA', 'CIPLA', 'UNICEF', 'MEDREICH', 'BIOCON', 'VIATRIS', 'WORLD HEALTH ORG.', 'MEIJI GROUP', '+More'],
-// // //     other: ['NEILSOFT', 'SOGEFI GROUP', 'LENSKART', 'ADVIK HI-TECH', 'POTAIN', 'SÉCHERON', 'MEPHISTO', 'CLYDE INDUSTRIES', 'AVANTOR', 'TARA RELAYS'],
-// // //   };
-
-// // //   return (
-// // //     <section id="clients" className="clients-sec">
-// // //       <div className="sr">
-// // //         <div className="chip">Trusted By</div>
-// // //         <h2 className="sec-title">
-// // //           Clients Across <span className="hl">Every Sector</span>
-// // //         </h2>
-// // //       </div>
-// // //       <div className="tab-bar sr d1">
-// // //         {tabs.map((tab) => (
-// // //           <button
-// // //             key={tab.id}
-// // //             className={`tb ${activeTab === tab.id ? 'on' : ''}`}
-// // //             onClick={() => setActiveTab(tab.id)}
-// // //           >
-// // //             {tab.label}
-// // //           </button>
-// // //         ))}
-// // //       </div>
-// // //       <div className={`cpanel ${activeTab === 'lux' ? 'on' : ''} sr d2`}>
-// // //         <div className="cl-grid">
-// // //           {clientsData.lux.map((client, index) => (
-// // //             <div key={index} className="cl">
-// // //               <span>{client}</span>
-// // //             </div>
-// // //           ))}
-// // //         </div>
-// // //       </div>
-// // //       <div className={`cpanel ${activeTab === 'auto' ? 'on' : ''} sr d2`}>
-// // //         <div className="cl-grid">
-// // //           {clientsData.auto.map((client, index) => (
-// // //             <div key={index} className="cl">
-// // //               <span>{client}</span>
-// // //             </div>
-// // //           ))}
-// // //         </div>
-// // //       </div>
-// // //       <div className={`cpanel ${activeTab === 'aero' ? 'on' : ''} sr d2`}>
-// // //         <div className="cl-grid">
-// // //           {clientsData.aero.map((client, index) => (
-// // //             <div key={index} className="cl">
-// // //               <span>{client}</span>
-// // //             </div>
-// // //           ))}
-// // //         </div>
-// // //       </div>
-// // //       <div className={`cpanel ${activeTab === 'pharma' ? 'on' : ''} sr d2`}>
-// // //         <div className="cl-grid">
-// // //           {clientsData.pharma.map((client, index) => (
-// // //             <div key={index} className="cl">
-// // //               <span>{client}</span>
-// // //             </div>
-// // //           ))}
-// // //         </div>
-// // //       </div>
-// // //       <div className={`cpanel ${activeTab === 'other' ? 'on' : ''} sr d2`}>
-// // //         <div className="cl-grid">
-// // //           {clientsData.other.map((client, index) => (
-// // //             <div key={index} className="cl">
-// // //               <span>{client}</span>
-// // //             </div>
-// // //           ))}
-// // //         </div>
-// // //       </div>
-// // //     </section>
-// // //   );
-// // // };
-
-// // // export default Clients; 
-// // // .clients-sec {
-// // //   background: var(--w);
-// // //   padding: 72px 48px;
-// // // }
-
-// // // .tab-bar {
-// // //   display: flex;
-// // //   gap: 0;
-// // //   border-bottom: 1.5px solid var(--bd);
-// // //   margin-top: 28px;
-// // // }
-
-// // // .tb {
-// // //   padding: 9px 18px;
-// // //   font-size: 0.74rem;
-// // //   font-weight: 700;
-// // //   letter-spacing: 0.05em;
-// // //   text-transform: uppercase;
-// // //   color: var(--tm);
-// // //   background: none;
-// // //   border: none;
-// // //   cursor: pointer;
-// // //   border-bottom: 2px solid transparent;
-// // //   margin-bottom: -1.5px;
-// // //   transition: all 0.2s;
-// // //   font-family: 'Inter', sans-serif;
-// // // }
-
-// // // .tb.on {
-// // //   color: var(--n);
-// // //   border-bottom-color: var(--g);
-// // // }
-
-// // // .tb:hover {
-// // //   color: var(--n);
-// // // }
-
-// // // .cpanel {
-// // //   display: none;
-// // //   padding-top: 20px;
-// // // }
-
-// // // .cpanel.on {
-// // //   display: block;
-// // // }
-
-// // // .cl-grid {
-// // //   display: grid;
-// // //   grid-template-columns: repeat(5, 1fr);
-// // //   gap: 1px;
-// // //   background: var(--bd);
-// // //   border: 1px solid var(--bd);
-// // // }
-
-// // // .cl {
-// // //   background: var(--w);
-// // //   padding: 20px 14px;
-// // //   display: flex;
-// // //   align-items: center;
-// // //   justify-content: center;
-// // //   transition: background 0.22s;
-// // //   cursor: default;
-// // // }
-
-// // // .cl:hover {
-// // //   background: var(--n);
-// // // }
-
-// // // .cl span {
-// // //   font-size: 0.74rem;
-// // //   font-weight: 800;
-// // //   color: var(--tm);
-// // //   letter-spacing: 0.05em;
-// // //   text-transform: uppercase;
-// // //   text-align: center;
-// // //   transition: color 0.22s;
-// // // }
-
-// // // .cl:hover span {
-// // //   color: var(--g3);
-// // // }
-
-
-// // import React, { useState } from 'react';
-
-// // const Clients = () => {
-// //   const [activeTab, setActiveTab] = useState('lux');
-
-// //   const tabs = [
-// //     { id: 'lux', label: 'Luxury' },
-// //     { id: 'auto', label: 'Automotive & Eng.' },
-// //     { id: 'aero', label: 'Aerospace & Defense' },
-// //     { id: 'pharma', label: 'Pharma & Biotech' },
-// //     { id: 'other', label: 'Others' },
-// //   ];
-
-// //   const clientsData = {
-// //     lux: ['ROLEX', 'BVLGARI', 'CARTIER', 'CHOPARD GENÈVE', 'BREITLING 1884', 'ETHOS WATCH', 'RIMOWA', 'FRANCK MULLER', 'RICHEMONT', '+More Luxury'],
-// //     auto: ['TIMKEN', 'WIPRO INFRA ENG.', 'HILTI', 'MARUTI SUZUKI', 'BERGEN PIPE', 'ANDRITZ', 'RICE LAKE', 'ASHIRVAD PIPES', 'HAGER', 'OERLIKON BALZERS'],
-// //     aero: ['FOXCONN', 'PEGATRON', 'TATA ELECTRONICS', 'PIXXEL', 'GALAXEYE', 'DHRUVA SPACE', 'PARAS DEFENCE', 'NAVAL GROUP', 'DIGANTARA', 'ETHEREAL X'],
-// //     pharma: ['AUROBINDO', 'TRANSASIA', 'CIPLA', 'UNICEF', 'MEDREICH', 'BIOCON', 'VIATRIS', 'WORLD HEALTH ORG.', 'MEIJI GROUP', '+More'],
-// //     other: ['NEILSOFT', 'SOGEFI GROUP', 'LENSKART', 'ADVIK HI-TECH', 'POTAIN', 'SÉCHERON', 'MEPHISTO', 'CLYDE INDUSTRIES', 'AVANTOR', 'TARA RELAYS'],
-// //   };
-
-// //   return (
-// //     <section id="clients" className="clients-sec">
-// //       <div className="sr">
-// //         <div className="chip">Trusted By</div>
-// //         <h2 className="sec-title">
-// //           Clients Across <span className="hl">Every Sector</span>
-// //         </h2>
-// //       </div>
-// //       <div className="tab-bar sr d1">
-// //         {tabs.map((tab) => (
-// //           <button
-// //             key={tab.id}
-// //             className={`tb ${activeTab === tab.id ? 'on' : ''}`}
-// //             onClick={() => setActiveTab(tab.id)}
-// //           >
-// //             {tab.label}
-// //           </button>
-// //         ))}
-// //       </div>
-// //       <div className={`cpanel ${activeTab === 'lux' ? 'on' : ''} sr d2`}>
-// //         <div className="cl-grid">
-// //           {clientsData.lux.map((client, index) => (
-// //             <div key={index} className="cl">
-// //               <span>{client}</span>
-// //             </div>
-// //           ))}
-// //         </div>
-// //       </div>
-// //       <div className={`cpanel ${activeTab === 'auto' ? 'on' : ''} sr d2`}>
-// //         <div className="cl-grid">
-// //           {clientsData.auto.map((client, index) => (
-// //             <div key={index} className="cl">
-// //               <span>{client}</span>
-// //             </div>
-// //           ))}
-// //         </div>
-// //       </div>
-// //       <div className={`cpanel ${activeTab === 'aero' ? 'on' : ''} sr d2`}>
-// //         <div className="cl-grid">
-// //           {clientsData.aero.map((client, index) => (
-// //             <div key={index} className="cl">
-// //               <span>{client}</span>
-// //             </div>
-// //           ))}
-// //         </div>
-// //       </div>
-// //       <div className={`cpanel ${activeTab === 'pharma' ? 'on' : ''} sr d2`}>
-// //         <div className="cl-grid">
-// //           {clientsData.pharma.map((client, index) => (
-// //             <div key={index} className="cl">
-// //               <span>{client}</span>
-// //             </div>
-// //           ))}
-// //         </div>
-// //       </div>
-// //       <div className={`cpanel ${activeTab === 'other' ? 'on' : ''} sr d2`}>
-// //         <div className="cl-grid">
-// //           {clientsData.other.map((client, index) => (
-// //             <div key={index} className="cl">
-// //               <span>{client}</span>
-// //             </div>
-// //           ))}
-// //         </div>
-// //       </div>
-// //     </section>
-// //   );
-// // };
-
-// // export default Clients;
-
-// // // Inject styles into document head
-// // if (typeof document !== 'undefined') {
-// //   const styleSheet = document.createElement("style");
-// //   styleSheet.textContent = `
-// //     .clients-sec {
-// //       background: var(--w);
-// //       padding: 72px 48px;
-// //     }
-
-// //     .tab-bar {
-// //       display: flex;
-// //       gap: 0;
-// //       border-bottom: 1.5px solid var(--bd);
-// //       margin-top: 28px;
-// //     }
-
-// //     .tb {
-// //       padding: 9px 18px;
-// //       font-size: 0.74rem;
-// //       font-weight: 700;
-// //       letter-spacing: 0.05em;
-// //       text-transform: uppercase;
-// //       color: var(--tm);
-// //       background: none;
-// //       border: none;
-// //       cursor: pointer;
-// //       border-bottom: 2px solid transparent;
-// //       margin-bottom: -1.5px;
-// //       transition: all 0.2s;
-// //       font-family: 'Inter', sans-serif;
-// //     }
-
-// //     .tb.on {
-// //       color: var(--n);
-// //       border-bottom-color: var(--g);
-// //     }
-
-// //     .tb:hover {
-// //       color: var(--n);
-// //     }
-
-// //     .cpanel {
-// //       display: none;
-// //       padding-top: 20px;
-// //     }
-
-// //     .cpanel.on {
-// //       display: block;
-// //     }
-
-// //     .cl-grid {
-// //       display: grid;
-// //       grid-template-columns: repeat(5, 1fr);
-// //       gap: 1px;
-// //       background: var(--bd);
-// //       border: 1px solid var(--bd);
-// //     }
-
-// //     .cl {
-// //       background: var(--w);
-// //       padding: 20px 14px;
-// //       display: flex;
-// //       align-items: center;
-// //       justify-content: center;
-// //       transition: background 0.22s;
-// //       cursor: default;
-// //     }
-
-// //     .cl:hover {
-// //       background: var(--n);
-// //     }
-
-// //     .cl span {
-// //       font-size: 0.74rem;
-// //       font-weight: 800;
-// //       color: var(--tm);
-// //       letter-spacing: 0.05em;
-// //       text-transform: uppercase;
-// //       text-align: center;
-// //       transition: color 0.22s;
-// //     }
-
-// //     .cl:hover span {
-// //       color: var(--g3);
-// //     }
-
-// //     @media (max-width: 1100px) {
-// //       .clients-sec {
-// //         padding: 60px 20px;
-// //       }
-// //       .cl-grid {
-// //         grid-template-columns: repeat(3, 1fr);
-// //       }
-// //     }
-// //   `;
-// //   document.head.appendChild(styleSheet);
-// // }
-// // src/components/Home/Clients.jsx
-
-
-// // import React, { useState } from 'react';
-
-// // const Clients = () => {
-// //   const [activeTab, setActiveTab] = useState('lux');
-
-// //   const tabs = [
-// //     { id: 'lux', label: 'Luxury' },
-// //     { id: 'auto', label: 'Automotive & Eng.' },
-// //     { id: 'aero', label: 'Aerospace & Defense' },
-// //     { id: 'pharma', label: 'Pharma & Biotech' },
-// //     { id: 'other', label: 'Others' },
-// //   ];
-
-// //   const clientData = {
-// //     lux: ['ROLEX', 'BVLGARI', 'CARTIER', 'CHOPARD GENÈVE', 'BREITLING 1884', 'ETHOS WATCH', 'RIMOWA', 'FRANCK MULLER', 'RICHEMONT', '+More Luxury'],
-// //     auto: ['TIMKEN', 'WIPRO INFRA ENG.', 'HILTI', 'MARUTI SUZUKI', 'BERGEN PIPE', 'ANDRITZ', 'RICE LAKE', 'ASHIRVAD PIPES', 'HAGER', 'OERLIKON BALZERS'],
-// //     aero: ['FOXCONN', 'PEGATRON', 'TATA ELECTRONICS', 'PIXXEL', 'GALAXEYE', 'DHRUVA SPACE', 'PARAS DEFENCE', 'NAVAL GROUP', 'DIGANTARA', 'ETHEREAL X'],
-// //     pharma: ['AUROBINDO', 'TRANSASIA', 'CIPLA', 'UNICEF', 'MEDREICH', 'BIOCON', 'VIATRIS', 'WORLD HEALTH ORG.', 'MEIJI GROUP', '+More'],
-// //     other: ['NEILSOFT', 'SOGEFI GROUP', 'LENSKART', 'ADVIK HI-TECH', 'POTAIN', 'SÉCHERON', 'MEPHISTO', 'CLYDE INDUSTRIES', 'AVANTOR', 'TARA RELAYS'],
-// //   };
-
-// //   return (
-// //     <section id="clients" className="clients-sec">
-// //       <div className=".section-header">
-// //         <div className="chip">Trusted By</div>
-// //         <h2 className="sec-title">
-// //           Clients Across <span className="hl">Every Sector</span>
-// //         </h2>
-// //       </div>
-// //       <div className="tab-bar sr d1">
-// //         {tabs.map((tab) => (
-// //           <button
-// //             key={tab.id}
-// //             className={`tb ${activeTab === tab.id ? 'on' : ''}`}
-// //             onClick={() => setActiveTab(tab.id)}
-// //           >
-// //             {tab.label}
-// //           </button>
-// //         ))}
-// //       </div>
-// //       {tabs.map((tab) => (
-// //         <div
-// //           key={tab.id}
-// //           id={`p-${tab.id}`}
-// //           className={`cpanel ${activeTab === tab.id ? 'on' : ''} sr d2`}
-// //         >
-// //           <div className="cl-grid">
-// //             {clientData[tab.id].map((client, idx) => (
-// //               <div key={idx} className="cl">
-// //                 <span>{client}</span>
-// //               </div>
-// //             ))}
-// //           </div>
-// //         </div>
-// //       ))}
-// //     </section>
-// //   );
-// // };
-
-// // export default Clients;
-
-// import React, { useState } from 'react';
-
-// const Clients = () => {
-//   const [activeTab, setActiveTab] = useState('lux');
-
-//   const tabs = [
-//     { id: 'lux', label: 'Luxury' },
-//     { id: 'auto', label: 'Automotive & Eng.' },
-//     { id: 'aero', label: 'Aerospace & Defense' },
-//     { id: 'pharma', label: 'Pharma & Biotech' },
-//     { id: 'other', label: 'Others' },
-//   ];
-
-//   const clientData = {
-//     lux: ['ROLEX', 'BVLGARI', 'CARTIER', 'CHOPARD GENÈVE', 'BREITLING 1884', 'ETHOS WATCH', 'RIMOWA', 'FRANCK MULLER', 'RICHEMONT', '+More Luxury'],
-//     auto: ['TIMKEN', 'WIPRO INFRA ENG.', 'HILTI', 'MARUTI SUZUKI', 'BERGEN PIPE', 'ANDRITZ', 'RICE LAKE', 'ASHIRVAD PIPES', 'HAGER', 'OERLIKON BALZERS'],
-//     aero: ['FOXCONN', 'PEGATRON', 'TATA ELECTRONICS', 'PIXXEL', 'GALAXEYE', 'DHRUVA SPACE', 'PARAS DEFENCE', 'NAVAL GROUP', 'DIGANTARA', 'ETHEREAL X'],
-//     pharma: ['AUROBINDO', 'TRANSASIA', 'CIPLA', 'UNICEF', 'MEDREICH', 'BIOCON', 'VIATRIS', 'WORLD HEALTH ORG.', 'MEIJI GROUP', '+More'],
-//     other: ['NEILSOFT', 'SOGEFI GROUP', 'LENSKART', 'ADVIK HI-TECH', 'POTAIN', 'SÉCHERON', 'MEPHISTO', 'CLYDE INDUSTRIES', 'AVANTOR', 'TARA RELAYS'],
-//   };
-
-//   return (
-//     <>
-//       <style>{`
-//         /* Center the tab bar */
-//         .clients-sec .tab-bar {
-//           justify-content: center;
-//           gap: 12px; /* optional spacing between buttons */
-//         }
-
-//         /* Center the client grid */
-//         .clients-sec .cl-grid {
-//           max-width: 1200px;
-//           margin: 0 auto;
-//         }
-
-//         /* Adjust grid breakpoints to keep centered */
-//         @media (max-width: 768px) {
-//           .clients-sec .cl-grid {
-//             max-width: 100%;
-//           }
-//         }
-//       `}</style>
-
-//       <section id="clients" className="clients-sec">
-//         {/* Fixed heading wrapper: no leading dot */}
-//         <div className="section-header">
-//           <div className="chip">Trusted By</div>
-//           <h2 className="sec-title">
-//             Clients Across <span className="hl">Every Sector</span>
-//           </h2>
-//         </div>
-
-//         <div className="tab-bar sr d1">
-//           {tabs.map((tab) => (
-//             <button
-//               key={tab.id}
-//               className={`tb ${activeTab === tab.id ? 'on' : ''}`}
-//               onClick={() => setActiveTab(tab.id)}
-//             >
-//               {tab.label}
-//             </button>
-//           ))}
-//         </div>
-
-//         {tabs.map((tab) => (
-//           <div
-//             key={tab.id}
-//             id={`p-${tab.id}`}
-//             className={`cpanel ${activeTab === tab.id ? 'on' : ''} sr d2`}
-//           >
-//             <div className="cl-grid">
-//               {clientData[tab.id].map((client, idx) => (
-//                 <div key={idx} className="cl">
-//                   <span>{client}</span>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         ))}
-//       </section>
-//     </>
-//   );
-// };
-
-// export default Clients;
 import React, { useState } from 'react';
 
 const Clients = () => {
@@ -534,28 +22,147 @@ const Clients = () => {
   return (
     <>
       <style>{`
-        /* Reduce top padding of the clients section */
-        .clients-sec {
-          padding-top: 40px; /* adjust as needed */
+        .clients-section {
+          padding: 60px 24px;
+          background: #ffffff;
+          font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
-        /* Center the tab bar */
-        .clients-sec .tab-bar {
+        .section-header {
+          text-align: center;
+          margin-bottom: 40px;
+        }
+        .chip {
+          display: inline-block;
+          background: #eef2ff;
+          color: #0b2e3e;
+          font-size: 0.875rem;
+          font-weight: 600;
+          padding: 0.25rem 0.75rem;
+          border-radius: 30px;
+          margin-bottom: 1rem;
+        }
+        .sec-title {
+          font-size: 2rem;
+          font-weight: 700;
+          color: #0b2e3e;
+          margin: 0;
+        }
+        .sec-title .hl {
+          color: #6a9b5a;
+        }
+
+        /* Tabs */
+        .tab-bar {
+          display: flex;
+          flex-wrap: wrap;
           justify-content: center;
           gap: 12px;
+          margin-bottom: 48px;
         }
-        /* Center the client grid */
-        .clients-sec .cl-grid {
-          max-width: 1200px;
+        .tab-btn {
+          background: transparent;
+          border: none;
+          padding: 10px 24px;
+          font-size: 1rem;
+          font-weight: 600;
+          color: #4a627a;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          border-radius: 40px;
+          position: relative;
+        }
+        .tab-btn:hover {
+          color: #0b2e3e;
+          background: #f0f4f9;
+        }
+        .tab-btn.active {
+          color: #0b2e3e;
+          background: #e6edf5;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .tab-btn.active::after {
+          content: '';
+          position: absolute;
+          bottom: -6px;
+          left: 20%;
+          width: 60%;
+          height: 2px;
+          background: #6a9b5a;
+          border-radius: 2px;
+        }
+
+        /* Client grid */
+        .client-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+          gap: 20px;
+          max-width: 1280px;
           margin: 0 auto;
         }
+        .client-card {
+          background: white;
+          border: 1px solid #eef2f5;
+          border-radius: 16px;
+          padding: 20px 12px;
+          text-align: center;
+          transition: all 0.25s ease;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+          cursor: default;
+        }
+        .client-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 20px -12px rgba(0,0,0,0.1);
+          border-color: #dce5ec;
+          background: #fefefe;
+        }
+        .client-card span {
+          font-size: 0.95rem;
+          font-weight: 500;
+          color: #1a2a3a;
+          letter-spacing: -0.01em;
+        }
+
+        /* Panel animation */
+        .cpanel {
+          transition: opacity 0.2s ease;
+        }
+        .cpanel.on {
+          display: block;
+        }
+        .cpanel:not(.on) {
+          display: none;
+        }
+
         @media (max-width: 768px) {
-          .clients-sec .cl-grid {
-            max-width: 100%;
+          .clients-section {
+            padding: 40px 20px;
+          }
+          .sec-title {
+            font-size: 1.8rem;
+          }
+          .tab-bar {
+            gap: 8px;
+          }
+          .tab-btn {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+          }
+          .client-grid {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+          }
+          .client-card {
+            padding: 16px 8px;
+          }
+        }
+        @media (max-width: 480px) {
+          .client-grid {
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
           }
         }
       `}</style>
 
-      <section id="clients" className="clients-sec">
+      <section className="clients-section">
         <div className="section-header">
           <div className="chip">Trusted By</div>
           <h2 className="sec-title">
@@ -563,11 +170,11 @@ const Clients = () => {
           </h2>
         </div>
 
-        <div className="tab-bar sr d1">
+        <div className="tab-bar">
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              className={`tb ${activeTab === tab.id ? 'on' : ''}`}
+              className={`tab-btn ${activeTab === tab.id ? 'active' : ''}`}
               onClick={() => setActiveTab(tab.id)}
             >
               {tab.label}
@@ -578,12 +185,11 @@ const Clients = () => {
         {tabs.map((tab) => (
           <div
             key={tab.id}
-            id={`p-${tab.id}`}
-            className={`cpanel ${activeTab === tab.id ? 'on' : ''} sr d2`}
+            className={`cpanel ${activeTab === tab.id ? 'on' : ''}`}
           >
-            <div className="cl-grid">
+            <div className="client-grid">
               {clientData[tab.id].map((client, idx) => (
-                <div key={idx} className="cl">
+                <div key={idx} className="client-card">
                   <span>{client}</span>
                 </div>
               ))}

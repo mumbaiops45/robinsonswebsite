@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const RenewableEnergy = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <style>{`
@@ -11,16 +14,32 @@ const RenewableEnergy = () => {
           line-height: 1.5;
         }
 
-        /* Hero section */
+        /* Hero section – with overlay */
         .renewable-hero {
           position: relative;
-          background: linear-gradient(rgba(11,46,62,0.6), rgba(27,77,110,0.7)), 
-                      url('renewable-energyhero.jpg') center/cover no-repeat;
+          background: url('/renewable-energyhero.jpg') center/cover no-repeat;
           color: white;
           padding: 120px 24px 100px;
           text-align: center;
           margin-top: 62px;
         }
+
+        .renewable-hero::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.55);
+          z-index: 1;
+        }
+
+        .renewable-hero .container {
+          position: relative;
+          z-index: 2;
+        }
+
         @media (max-width: 768px) {
           .renewable-hero {
             margin-top: 56px;
@@ -32,22 +51,23 @@ const RenewableEnergy = () => {
           margin-bottom: 1rem;
           font-weight: 700;
           letter-spacing: -0.02em;
-          text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+          text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
         }
         .renewable-hero .tagline {
           font-size: 1.5rem;
           font-weight: 400;
           margin-bottom: 1.5rem;
-          text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+          text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
         }
         .renewable-hero .description {
           max-width: 800px;
           margin: 0 auto;
           font-size: 1.125rem;
           line-height: 1.6;
-          background: rgba(0,0,0,0.3);
-          padding: 1rem;
+          background: rgba(0, 0, 0, 0.6);
+          padding: 1rem 1.5rem;
           border-radius: 8px;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .container {
@@ -235,6 +255,9 @@ const RenewableEnergy = () => {
           text-decoration: none;
           font-weight: 600;
           transition: background 0.2s;
+          border: none;
+          cursor: pointer;
+          font-size: 1rem;
         }
         .cta-button:hover {
           background: #5a8b4a;
@@ -278,7 +301,7 @@ const RenewableEnergy = () => {
                 </p>
               </div>
               <div className="overview-image">
-                <img src="/images/renewable-energy/overview.jpg" alt="Wind turbine transport" />
+                <img src="/renewable-energy-overview.jpg" alt="Wind turbine transport" />
               </div>
             </div>
           </div>
@@ -325,15 +348,15 @@ const RenewableEnergy = () => {
             </div>
             <div className="showcase-grid">
               <div className="showcase-item">
-                <img src="/images/renewable-energy/wind.jpg" alt="Wind turbine transport" />
+                <img src="/renewable-energy-wind.png" alt="Wind turbine transport" />
                 <div className="showcase-caption">Wind Turbine Logistics</div>
               </div>
               <div className="showcase-item">
-                <img src="/images/renewable-energy/solar.jpg" alt="Solar panel delivery" />
+                <img src="/renewable-energy-solar.png" alt="Solar panel delivery" />
                 <div className="showcase-caption">Solar Project Delivery</div>
               </div>
               <div className="showcase-item">
-                <img src="/images/renewable-energy/port.jpg" alt="Port handling" />
+                <img src="/renewable-energy-port.png" alt="Port handling" />
                 <div className="showcase-caption">Heavy Lift & Port Operations</div>
               </div>
             </div>
@@ -345,10 +368,12 @@ const RenewableEnergy = () => {
           <div className="container">
             <h2>Ready to power your renewable energy project?</h2>
             <p>Let's discuss how our specialised logistics can support your green initiatives.</p>
-            <a href="#contact" className="cta-button" onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-            }}>Get in Touch</a>
+            <button
+              className="cta-button"
+              onClick={() => navigate('/contact')}
+            >
+              Get in Touch
+            </button>
           </div>
         </div>
       </div>

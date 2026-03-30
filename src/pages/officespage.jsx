@@ -123,21 +123,24 @@ const OfficesPage = () => {
         }
         .off-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
           gap: 32px;
           margin-top: 40px;
         }
         .office-card {
           background: white;
-          border-radius: 1rem;
-          padding: 1.5rem;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          border-radius: 1.25rem;
+          padding: 1.75rem;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+          transition: all 0.3s ease;
           border: 1px solid #eef2f6;
+          position: relative;
+          overflow: hidden;
         }
         .office-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+          transform: translateY(-6px);
+          box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.12);
+          border-color: #dce5ec;
         }
         .office-card.hq {
           background: linear-gradient(135deg, #0b2e3e 0%, #1b4d6e 100%);
@@ -150,50 +153,50 @@ const OfficesPage = () => {
           border: none;
         }
         .office-card h3 {
-          font-size: 1.3rem;
+          font-size: 1.4rem;
           font-weight: 700;
-          margin-bottom: 0.75rem;
+          margin-bottom: 1rem;
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 10px;
         }
         .office-card.hq h3::before {
           content: '⭐';
-          font-size: 1rem;
+          font-size: 1.2rem;
         }
         .office-card.more h3::before {
           content: '📍';
-          font-size: 1rem;
+          font-size: 1.2rem;
         }
         .office-address {
-          font-size: 0.85rem;
+          font-size: 0.9rem;
           line-height: 1.5;
-          margin-bottom: 0.75rem;
+          margin-bottom: 1rem;
           color: #4a627a;
         }
         .office-card.hq .office-address,
         .office-card.more .office-address {
-          color: rgba(255,255,255,0.8);
+          color: rgba(255, 255, 255, 0.85);
         }
         .office-detail {
           display: flex;
           align-items: center;
           gap: 8px;
-          font-size: 0.8rem;
-          margin-top: 0.5rem;
+          font-size: 0.85rem;
+          margin-top: 0.75rem;
           color: #6a9b5a;
         }
         .office-card.hq .office-detail,
         .office-card.more .office-detail {
-          color: rgba(255,255,255,0.9);
-        }
-        .office-detail i {
-          font-style: normal;
-          font-weight: 500;
+          color: rgba(255, 255, 255, 0.9);
         }
         .office-icon {
           font-size: 1rem;
           min-width: 20px;
+        }
+        .office-detail i {
+          font-style: normal;
+          font-weight: 500;
         }
 
         @media (max-width: 768px) {
@@ -207,21 +210,22 @@ const OfficesPage = () => {
             padding: 60px 20px;
           }
           .off-grid {
+            grid-template-columns: 1fr;
             gap: 24px;
           }
           .office-card {
-            padding: 1.25rem;
+            padding: 1.5rem;
           }
           .office-card h3 {
-            font-size: 1.1rem;
+            font-size: 1.25rem;
           }
         }
         @media (max-width: 480px) {
           .offices-hero h1 {
             font-size: 1.8rem;
           }
-          .off-grid {
-            grid-template-columns: 1fr;
+          .office-card h3 {
+            font-size: 1.2rem;
           }
         }
       `}</style>

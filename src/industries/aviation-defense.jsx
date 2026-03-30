@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AviationDefense = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <style>{`
@@ -11,21 +14,38 @@ const AviationDefense = () => {
           line-height: 1.5;
         }
 
-        /* Hero section */
+        /* Hero section – with overlay */
         .aviation-hero {
           position: relative;
-          background: 
-                      url('/defensehero.jpg') center/cover no-repeat;
-          color: white
-           padding: 180px 24px 140px; 
+          background: url('/defensehero.jpg') center/cover no-repeat;
+          color: white;
+          padding: 180px 24px 140px;
           text-align: center;
-          min-height: 60vh;  
+          min-height: 60vh;
           margin-top: 62px;
         }
+
+        .aviation-hero::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.55);
+          z-index: 1;
+        }
+
+        .aviation-hero .container {
+          position: relative;
+          z-index: 2;
+        }
+
         @media (max-width: 768px) {
           .aviation-hero {
             margin-top: 56px;
             padding: 80px 20px 60px;
+            min-height: auto;
           }
         }
         .aviation-hero h1 {
@@ -33,22 +53,23 @@ const AviationDefense = () => {
           margin-bottom: 1rem;
           font-weight: 700;
           letter-spacing: -0.02em;
-          text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+          text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
         }
         .aviation-hero .tagline {
           font-size: 1.5rem;
           font-weight: 400;
           margin-bottom: 1.5rem;
-          text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+          text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
         }
         .aviation-hero .description {
           max-width: 800px;
           margin: 0 auto;
           font-size: 1.125rem;
           line-height: 1.6;
-          background: rgba(0,0,0,0.3);
-          padding: 1rem;
+          background: rgba(0, 0, 0, 0.6);
+          padding: 1rem 1.5rem;
           border-radius: 8px;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .container {
@@ -236,6 +257,9 @@ const AviationDefense = () => {
           text-decoration: none;
           font-weight: 600;
           transition: background 0.2s;
+          border: none;
+          cursor: pointer;
+          font-size: 1rem;
         }
         .cta-button:hover {
           background: #5a8b4a;
@@ -346,10 +370,12 @@ const AviationDefense = () => {
           <div className="container">
             <h2>Ready to ensure mission‑ready logistics?</h2>
             <p>Contact our aviation and defense team for a secure, reliable solution.</p>
-            <a href="#contact" className="cta-button" onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-            }}>Get in Touch</a>
+            <button
+              className="cta-button"
+              onClick={() => navigate('/contact')}
+            >
+              Get in Touch
+            </button>
           </div>
         </div>
       </div>
