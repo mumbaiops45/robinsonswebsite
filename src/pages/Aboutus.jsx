@@ -1103,7 +1103,37 @@ const Aboutus = () => {
         .value-card:hover::before {
           transform: scaleX(1);
         }
+.chip {
+  display: inline-block;
+  text-align: center;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 30px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
 
+.sec-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--primary-dark);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.sec-sub {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-gray);
+  max-width: 700px;
+  margin: 0 auto 3rem auto;
+  font-weight: 400;
+}
         /* CTA Section */
         .cta-section {
           background: linear-gradient(135deg, var(--primary-dark), var(--primary-accent));
