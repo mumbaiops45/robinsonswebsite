@@ -1,4 +1,7 @@
-  src/styles/global.css
+ 
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
   * {
     margin: 0;
     padding: 0;
@@ -32,12 +35,12 @@
   }
 
   body {
-    font-family: 'Inter', sans-serif;
-    background: var(--w);
-    color: var(--t);
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
+  font-family: 'Poppins', sans-serif;
+  background: var(--w);
+  color: var(--t);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
   /* ── NAV ── */
   nav {
@@ -1132,7 +1135,7 @@
   }
   .ft-desc {
     font-size: 0.78rem;
-    color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
     line-height: 1.75;
     max-width: 260px;
   }
@@ -1141,21 +1144,31 @@
     font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
     margin-bottom: 12px;
   }
-  .ft-col a {
-    display: block;
-    font-size: 0.79rem;
-    color: rgba(255, 255, 255, 0.35);
-    text-decoration: none;
-    margin-bottom: 7px;
-    transition: all 0.2s;
-  }
-  .ft-col a:hover {
-    color: var(--g3);
-    padding-left: 4px;
-  }
+ .ft-col a, 
+.footer-link {
+  display: block;
+  font-size: 0.79rem;
+  color: #ffffff;           /* white text */
+  text-decoration: none;
+  margin-bottom: 7px;
+  transition: all 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  width: auto;
+}
+.ft-col a:hover, 
+.footer-link:hover {
+  color: #6a9b5a;           /* or var(--g3) if defined */
+  text-decoration: underline;
+  padding-left: 4px;        /* optional slight indent */
+}
   .ft-btm {
     display: flex;
     justify-content: space-between;
@@ -1166,7 +1179,9 @@
   }
   .ft-copy {
     font-size: 0.71rem;
-    color: rgba(255, 255, 255, 0.2);
+    /* color: rgba(255, 255, 255, 0.2); */
+     color: #ffffff; 
+     opacity: 0.6; 
   }
   .ft-copy strong {
     color: var(--g3);
@@ -1174,7 +1189,7 @@
   }
   .ft-tag {
     font-size: 0.67rem;
-    color: rgba(255, 255, 255, 0.12);
+    color: #ffffff; 
     letter-spacing: 0.14em;
     text-transform: uppercase;
   }

@@ -1273,7 +1273,7 @@ const AirFreight = () => {
           }
           .cta-section h2 {
             font-size: 1.7rem;
-          }
+          } 
         }
         @media (max-width: 480px) {
           .air-hero h1 { font-size: 1.8rem; }

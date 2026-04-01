@@ -17,7 +17,7 @@ const AviationDefense = () => {
         /* Hero section – with overlay */
         .aviation-hero {
           position: relative;
-          background: url('/defensehero.jpg') center/cover no-repeat;
+          background: url('/aerospace-defense.jpg') center/cover no-repeat;
           color: white;
           padding: 180px 24px 140px;
           text-align: center;
@@ -233,46 +233,64 @@ const AviationDefense = () => {
         }
 
         /* CTA section */
-        .cta-section {
-          background: #0b2e3e;
+       .cta-section {
+          background: linear-gradient(135deg, #0b2e3e, #6a9b5a);
           color: white;
-          padding: 80px 0;
           text-align: center;
+          padding: 70px 20px;
+          border-radius: 48px;
+          margin: 40px auto 80px;
+          max-width: 1100px;
         }
         .cta-section h2 {
           font-size: 2rem;
+          font-weight: 700;
           margin-bottom: 1rem;
         }
         .cta-section p {
+          font-size: 1.1rem;
+          opacity: 0.9;
           max-width: 600px;
-          margin: 0 auto 2rem auto;
-          font-size: 1.125rem;
+          margin: 0 auto 1.8rem;
+          font-weight: 400;
         }
-        .cta-button {
+       .cta-button {
           display: inline-block;
-          background: #6a9b5a;
-          color: white;
+          background: white;
+          color: #0b2e3e;
           padding: 12px 32px;
-          border-radius: 4px;
-          text-decoration: none;
+          border-radius: 40px;
           font-weight: 600;
-          transition: background 0.2s;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
           border: none;
           cursor: pointer;
           font-size: 1rem;
         }
         .cta-button:hover {
-          background: #5a8b4a;
+          transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+          background: #f5f5f5;
         }
 
         @media (max-width: 768px) {
-          .aviation-hero h1 { font-size: 2.2rem; }
-          .aviation-hero .tagline { font-size: 1.2rem; }
+          .air-hero h1 { font-size: 2.2rem; }
+          .air-hero .tagline { font-size: 1.2rem; }
           .section-title { font-size: 2rem; }
           .container { padding: 0 20px; }
+          .overview-grid { grid-template-columns: 1fr; gap: 2rem; }
+          .import-export-grid { grid-template-columns: 1fr; gap: 2rem; }
+          .cta-section {
+            margin: 40px 20px 60px;
+            padding: 50px 20px;
+          }
+          .cta-section h2 {
+            font-size: 1.7rem;
+          } 
         }
         @media (max-width: 480px) {
-          .aviation-hero h1 { font-size: 1.8rem; }
+          .air-hero h1 { font-size: 1.8rem; }
           .section-title { font-size: 1.8rem; }
         }
       `}</style>
@@ -366,14 +384,11 @@ const AviationDefense = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="cta-section">
           <div className="container">
+          <div className="cta-section">
             <h2>Ready to ensure mission‑ready logistics?</h2>
             <p>Contact our aviation and defense team for a secure, reliable solution.</p>
-            <button
-              className="cta-button"
-              onClick={() => navigate('/contact')}
-            >
+            <button className="cta-button" onClick={() => navigate('/contact')}>
               Get in Touch
             </button>
           </div>

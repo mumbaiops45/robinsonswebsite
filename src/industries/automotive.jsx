@@ -18,10 +18,9 @@ const Automotive = () => {
         /* Hero section with background image */
         .automotive-hero {
           position: relative;
-          background: linear-gradient(rgba(11,46,62,0.6), rgba(27,77,110,0.7)), 
-                      url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+          background: url('/automotive-logistics.jpg') center/cover no-repeat;
           color: white;
-          padding: 120px 24px 100px;
+          padding: 40px 24px 100px;
           text-align: center;
           margin-top: 62px;
         }
@@ -204,59 +203,65 @@ const Automotive = () => {
 
         /* CTA section */
         .cta-section {
-          background: #0b2e3e;
+          background: linear-gradient(135deg, #0b2e3e, #6a9b5a);
           color: white;
-          padding: 80px 0;
           text-align: center;
+          padding: 70px 20px;
+          border-radius: 48px;
+          margin: 40px auto 80px;
+          max-width: 1100px;
         }
         .cta-section h2 {
           font-size: 2rem;
+          font-weight: 700;
           margin-bottom: 1rem;
         }
         .cta-section p {
+          font-size: 1.1rem;
+          opacity: 0.9;
           max-width: 600px;
-          margin: 0 auto 2rem auto;
-          font-size: 1.125rem;
+          margin: 0 auto 1.8rem;
+          font-weight: 400;
         }
         .cta-button {
           display: inline-block;
-          background: #6a9b5a;
-          color: white;
+          background: white;
+          color: #0b2e3e;
           padding: 12px 32px;
-          border-radius: 4px;
-          text-decoration: none;
+          border-radius: 40px;
           font-weight: 600;
-          transition: background 0.2s;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
           border: none;
           cursor: pointer;
           font-size: 1rem;
         }
         .cta-button:hover {
-          background: #5a8b4a;
+          transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+          background: #f5f5f5;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-          .automotive-hero h1 {
-            font-size: 2.2rem;
+          .air-hero h1 { font-size: 2.2rem; }
+          .air-hero .tagline { font-size: 1.2rem; }
+          .section-title { font-size: 2rem; }
+          .container { padding: 0 20px; }
+          .overview-grid { grid-template-columns: 1fr; gap: 2rem; }
+          .import-export-grid { grid-template-columns: 1fr; gap: 2rem; }
+          .cta-section {
+            margin: 40px 20px 60px;
+            padding: 50px 20px;
           }
-          .automotive-hero .tagline {
-            font-size: 1.2rem;
-          }
-          .section-title {
-            font-size: 2rem;
-          }
-          .container {
-            padding: 0 20px;
-          }
+          .cta-section h2 {
+            font-size: 1.7rem;
+          } 
         }
         @media (max-width: 480px) {
-          .automotive-hero h1 {
-            font-size: 1.8rem;
-          }
-          .section-title {
-            font-size: 1.8rem;
-          }
+          .air-hero h1 { font-size: 1.8rem; }
+          .section-title { font-size: 1.8rem; }
         }
       `}</style>
 
@@ -286,8 +291,8 @@ const Automotive = () => {
                 </p>
               </div>
               <div className="overview-image">
-                <img 
-                  src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                <img
+                  src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
                   alt="Automotive logistics operations"
                 />
               </div>
@@ -328,14 +333,11 @@ const Automotive = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="cta-section">
-          <div className="container">
+        <div className="container">
+          <div className="cta-section">
             <h2>Ready to streamline your automotive logistics?</h2>
             <p>Contact our automotive team today to discuss how we can support your operations.</p>
-            <button
-              className="cta-button"
-              onClick={() => navigate('/contact')}
-            >
+            <button className="cta-button" onClick={() => navigate('/contact')}>
               Get in Touch
             </button>
           </div>
