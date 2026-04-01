@@ -955,7 +955,7 @@ const AirFreight = () => {
           color: white;
           padding: 10px 24px 100px;
           text-align: center;
-          margin-top: 52px;
+          margin-top: 62px;
           overflow: hidden;
         }
 
