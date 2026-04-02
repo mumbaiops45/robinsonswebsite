@@ -1018,7 +1018,7 @@ const AirFreight = () => {
         @media (max-width: 768px) {
           .air-hero {
             margin-top: 56px;
-            padding: 80px 20px 60px;
+            padding: 40px 20px 60px;
           }
           .air-hero h1 {
             font-size: 2.2rem;

@@ -1825,7 +1825,7 @@ const OceanImport = () => {
         @media (max-width: 768px) {
           .ocean-hero {
             margin-top: 56px;
-            padding: 80px 20px 60px;
+            padding: 40px 20px 60px;
           }
           .ocean-hero h1 { font-size: 2.2rem; }
           .ocean-hero .tagline { font-size: 1.2rem; }

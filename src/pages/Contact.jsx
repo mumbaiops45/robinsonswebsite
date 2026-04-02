@@ -1212,7 +1212,7 @@ const Contact = () => {
             font-size: 1rem;
           }
           .contact-hero {
-            padding: 100px 20px 80px;
+            padding: 40px 20px 80px;
             margin-top: 56px;
           }
           .contact-main {

@@ -43,7 +43,7 @@ const SpaceAvionics = () => {
         @media (max-width: 768px) {
           .space-hero {
             margin-top: 56px;
-            padding: 80px 20px 60px;
+            padding: 40px 20px 60px;
           }
         }
         .space-hero h1 {

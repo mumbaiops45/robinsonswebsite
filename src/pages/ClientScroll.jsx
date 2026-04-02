@@ -908,7 +908,7 @@ const ClientPage = () => {
         @media (max-width: 768px) {
           .hero {
             margin-top: 56px;
-            padding: 100px 20px 80px;
+            padding: 40px 20px 80px;
           }
           .hero h1 {
             font-size: 2.8rem;

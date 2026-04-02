@@ -43,7 +43,7 @@ const ColdChain = () => {
         @media (max-width: 768px) {
           .coldchain-hero {
             margin-top: 56px;
-            padding: 80px 20px 60px;
+            padding: 40px 20px 60px;
           }
         }
         .coldchain-hero h1 {

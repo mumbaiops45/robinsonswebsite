@@ -43,7 +43,7 @@ const RenewableEnergy = () => {
         @media (max-width: 768px) {
           .renewable-hero {
             margin-top: 56px;
-            padding: 80px 20px 60px;
+            padding: 40px 20px 60px;
           }
         }
         .renewable-hero h1 {

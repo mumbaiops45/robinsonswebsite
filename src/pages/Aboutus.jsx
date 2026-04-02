@@ -1196,7 +1196,7 @@ const Aboutus = () => {
           }
           .about-hero {
             padding: 0 20px;
-            padding-top: 36px;         /* Reduced from 56px */
+            padding-top: 66px;         /* Reduced from 56px */
           }
           .hero-content h1 {
             font-size: 3.2rem;

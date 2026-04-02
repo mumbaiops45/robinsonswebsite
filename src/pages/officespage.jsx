@@ -1082,7 +1082,7 @@ const OfficesPage = () => {
         }
         @media (max-width: 640px) {
           .offices-hero {
-            padding: 80px 16px 60px;
+            padding: 40px 16px 60px;
           }
           .hero-content h1 {
             font-size: 2.2rem;
