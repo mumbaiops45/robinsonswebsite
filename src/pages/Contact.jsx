@@ -702,7 +702,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaClock, 
-  FaPaperPlane, FaCheckCircle, FaBuilding, FaGlobe 
+  FaPaperPlane, FaCheckCircle, FaBuilding
 } from 'react-icons/fa';
 
 const Contact = () => {
