@@ -1,4 +1,3 @@
-// src/pages/industries/Automotive.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 

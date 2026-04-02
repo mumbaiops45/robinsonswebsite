@@ -1759,3 +1759,31 @@
       gap: 120px;
     }
   }
+
+
+  /* === CUSTOM SCROLLBAR (Webkit: Chrome, Edge, Safari) === */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--w2, #f7f9fc);   /* light gray background */
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--g, #6a9b5a);    /* brand green */
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--n, #093e5d);    /* dark blue on hover */
+}
+
+/* === FIREFOX SCROLLBAR === */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--g, #6a9b5a) var(--w2, #f7f9fc);
+}
