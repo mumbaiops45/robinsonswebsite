@@ -19,7 +19,7 @@ const ProjectLogistics = () => {
         /* Hero section – with gradient + overlay */
         .project-hero {
           position: relative;
-          background: linear-gradient(rgba(11,46,62,0.6), rgba(27,77,110,0.7)), 
+          background:
                       url('/projectlogisticshero.jpg') center/cover no-repeat;
           color: white;
           padding: 120px 24px 100px;
