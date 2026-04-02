@@ -805,7 +805,7 @@ const Aboutus = () => {
           background: linear-gradient(105deg, #0b2e3e 0%, #1b4d6e 70%, #2c6e4f 100%);
           color: white;
           padding: 0 48px;
-          padding-top: 42px;           /* Reduced from 62px */
+          padding-top: 62px;           /* Reduced from 62px */
           text-align: center;
           overflow: hidden;
           /* Removed min-height: 100vh and flex centering for tighter top */
