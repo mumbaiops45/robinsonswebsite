@@ -1415,7 +1415,7 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="emergency-card">
+                {/* <div className="emergency-card">
                   <div className="flex">
                     <FaGlobe size={24} color="#6a9b5a" />
                     <h3>24/7 Emergency Support</h3>
@@ -1424,7 +1424,7 @@ const Contact = () => {
                   <div className="emergency-phone">
                     📞 +91 98765 43210 (Emergency)
                   </div>
-                </div>
+                </div> */}
 
                 {/* Clickable Map */}
                 <div 
