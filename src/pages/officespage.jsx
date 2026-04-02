@@ -802,7 +802,7 @@ const OfficesPage = () => {
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
         .offices-page {
-          font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+          font-family: 'Poppins',sans-serif;
           background: linear-gradient(135deg, #f9fafc 0%, #ffffff 100%);
           overflow-x: hidden;
         }

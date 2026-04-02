@@ -1720,7 +1720,7 @@ const OceanImport = () => {
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
         .ocean-page {
-          font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          font-family: 'Poppins',sans-serif;
           color: #1a2a3a;
           background: #ffffff;
           line-height: 1.5;

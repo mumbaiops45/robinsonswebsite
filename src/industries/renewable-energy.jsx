@@ -7,8 +7,10 @@ const RenewableEnergy = () => {
   return (
     <>
       <style>{`
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
         .renewable-page {
-          font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          font-family: 'Poppins',sans-serif;
           color: #1a2a3a;
           background: #ffffff;
           line-height: 1.5;
@@ -20,8 +22,11 @@ const RenewableEnergy = () => {
           background: url('/renewable-energyhero.jpg') center/cover no-repeat;
           color: white;
           padding: 120px 24px 100px;
+          align-items: center; 
           text-align: center;
           margin-top: 62px;
+          min-height: 70vh;
+
         }
 
         .renewable-hero::before {
@@ -265,6 +270,8 @@ const RenewableEnergy = () => {
           border: none;
           cursor: pointer;
           font-size: 1rem;
+          font-family: inherit;
+
         }
         .cta-button:hover {
           transform: translateY(-3px);

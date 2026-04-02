@@ -843,7 +843,8 @@ const Contact = () => {
         }
 
         .contact-page {
-          font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+        
+          font-family: 'Poppins', sans-serif;
           background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
           overflow-x: hidden;
         }
@@ -1152,7 +1153,7 @@ const Contact = () => {
           padding: 0.75rem;
           border-radius: 0.75rem;
           text-align: center;
-          font-family: monospace;
+          font-family: 'Poppins', sans-serif;
           font-size: 1.1rem;
           letter-spacing: 0.5px;
         }

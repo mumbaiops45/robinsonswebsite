@@ -8,8 +8,9 @@ const Automotive = () => {
   return (
     <>
       <style>{`
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
         .automotive-page {
-          font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-family: 'Poppins',sans-serif;
           color: #1a2a3a;
           background: #ffffff;
           line-height: 1.5;
@@ -20,9 +21,11 @@ const Automotive = () => {
           position: relative;
           background: url('/automotive-logistics.jpg') center/cover no-repeat;
           color: white;
-          padding: 40px 24px 100px;
+          padding: 120px 24px 100px;
           text-align: center;
           margin-top: 62px;
+          min-height: 80vh;
+
         }
 
         /* Additional dark overlay to ensure text contrast */
@@ -236,6 +239,7 @@ const Automotive = () => {
           border: none;
           cursor: pointer;
           font-size: 1rem;
+          font-family: inherit;
         }
         .cta-button:hover {
           transform: translateY(-3px);

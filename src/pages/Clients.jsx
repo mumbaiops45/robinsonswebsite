@@ -22,10 +22,12 @@ const Clients = () => {
   return (
     <>
       <style>{`
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
         .clients-section {
           padding: 60px 24px;
           background: #ffffff;
-          font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          font-family: 'Poppins',sans-serif;
         }
         .section-header {
           text-align: center;

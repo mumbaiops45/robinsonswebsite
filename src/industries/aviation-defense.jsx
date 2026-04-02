@@ -7,8 +7,10 @@ const AviationDefense = () => {
   return (
     <>
       <style>{`
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
         .aviation-page {
-          font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          font-family: 'Poppins',sans-serif;
           color: #1a2a3a;
           background: #ffffff;
           line-height: 1.5;
@@ -19,7 +21,7 @@ const AviationDefense = () => {
           position: relative;
           background: url('/aerospace-defense.jpg') center/cover no-repeat;
           color: white;
-          padding: 180px 24px 140px;
+          padding: 120px 24px 100px;
           text-align: center;
           min-height: 60vh;
           margin-top: 62px;
@@ -267,6 +269,7 @@ const AviationDefense = () => {
           border: none;
           cursor: pointer;
           font-size: 1rem;
+          font-family: inherit;
         }
         .cta-button:hover {
           transform: translateY(-3px);

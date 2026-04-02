@@ -7,8 +7,10 @@ const SpaceAvionics = () => {
   return (
     <>
       <style>{`
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
         .space-page {
-          font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          font-family: 'Poppins',sans-serif;
           color: #1a2a3a;
           background: #ffffff;
           line-height: 1.5;
@@ -265,6 +267,8 @@ const SpaceAvionics = () => {
           border: none;
           cursor: pointer;
           font-size: 1rem;
+          font-family: inherit;
+
         }
         .cta-button:hover {
           transform: translateY(-3px);

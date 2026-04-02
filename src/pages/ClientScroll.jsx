@@ -693,7 +693,7 @@ const ClientPage = () => {
         }
 
         .client-page {
-          font-family: 'Poppins', system-ui, sans-serif;
+          font-family: 'Poppins', sans-serif;
           background: linear-gradient(145deg, #fefcf5 0%, #f5f7fc 100%);
           overflow-x: hidden;
           position: relative;

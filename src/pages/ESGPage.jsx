@@ -435,7 +435,7 @@ const ESGPage = () => {
         }
 
         .esg-page {
-          font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+          font-family: 'Poppins', sans-serif;
           color: var(--text-dark);
           background: #fff;
           line-height: 1.5;

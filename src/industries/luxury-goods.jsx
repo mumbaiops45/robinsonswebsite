@@ -7,8 +7,10 @@ const LuxuryGoods = () => {
   return (
     <>
       <style>{`
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
         .luxury-page {
-          font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          font-family: 'Poppins',sans-serif;
           color: #1a2a3a;
           background: #ffffff;
           line-height: 1.5;
@@ -268,6 +270,7 @@ const LuxuryGoods = () => {
           border: none;
           cursor: pointer;
           font-size: 1rem;
+          font-family: inherit;
         }
         .cta-button:hover {
           transform: translateY(-3px);
@@ -386,7 +389,7 @@ const LuxuryGoods = () => {
         </div>
 
         {/* CTA Section */}
-         <div className="container">
+        <div className="container">
           <div className="cta-section">
             <h2>Experience the Robinsons luxury difference</h2>
             <p>Contact our dedicated luxury logistics team to discuss your requirements.</p>

@@ -1158,6 +1158,7 @@ const Navbar = () => {
   return (
     <>
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
         .rcl-nav {
           position: fixed;
           top: 0; left: 0; right: 0;
@@ -1216,7 +1217,7 @@ const Navbar = () => {
   cursor: pointer;
   padding: 0;
   margin: 0;                  /* ← reset browser button margin */
-  font-family: inherit;
+  font-family: 'Poppins', sans-serif;
   display: inline-flex;
   align-items: center;
   line-height: 1;             /* ← prevents baseline drift */
@@ -1301,7 +1302,7 @@ const Navbar = () => {
           transition: background 0.2s;
           border: none;
           cursor: pointer;
-          font-family: inherit;
+          font-family: 'Poppins', sans-serif;
           white-space: nowrap;
           flex-shrink: 0;
         }
@@ -1375,7 +1376,7 @@ const Navbar = () => {
           transition: all 0.2s;
           border-bottom: 1px solid var(--bd, #d8e4ed);
           width: 100%;
-          font-family: inherit;
+          font-family: 'Poppins', sans-serif;  
           letter-spacing: 0.01em;
           text-decoration: none;
           display: flex;
@@ -1420,7 +1421,7 @@ const Navbar = () => {
           text-decoration: none;
           margin-top: 16px;
           transition: background 0.2s;
-          font-family: inherit;
+          font-family: 'Poppins', sans-serif;  
         }
         .rcl-mobile-cta:hover { background: var(--g, #6a9b5a); }
 
