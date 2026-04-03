@@ -18,19 +18,24 @@ const ConsolidationServices = () => {
         }
 
         /* Chip style (for hero) */
-        .chip {
-          display: inline-block;
-          background: rgba(255,255,255,0.2);
-          backdrop-filter: blur(4px);
-          color: white;
-          font-size: 0.875rem;
-          font-weight: 600;
-          padding: 0.25rem 0.75rem;
-          border-radius: 30px;
-          margin-bottom: 1rem;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
+       .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--g3, #8cb27f);
+  margin-bottom: 10px;
+}
+.chip::before {
+  content: '';
+  width: 16px;
+  height: 2px;
+  background: var(--g3, #8cb27f);
+  border-radius: 2px;
+}
 
         /* Hero section – gradient, no background image */
         .consolidation-hero {
@@ -86,11 +91,12 @@ const ConsolidationServices = () => {
           }
         }
 
+        /* ✅ Hero h1 – matches Hero page exactly */
         .consolidation-hero h1 {
-          font-size: 3rem;
+         
+
+color: #fff;
           margin-bottom: 1rem;
-          font-weight: 800;
-          letter-spacing: -0.02em;
           text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         }
 
@@ -118,7 +124,7 @@ const ConsolidationServices = () => {
             margin-top: 56px;
             padding: 40px 20px 60px;
           }
-          .consolidation-hero h1 { font-size: 2.2rem; }
+          /* ❌ Removed fixed h1 font-size override – now uses clamp */
           .consolidation-hero .tagline { font-size: 1.2rem; }
           .consolidation-hero .description { font-size: 1rem; padding: 0.8rem 1rem; }
         }
@@ -134,8 +140,7 @@ const ConsolidationServices = () => {
           max-width: 1100px;
         }
         .cta-section h2 {
-          font-size: 2rem;
-          font-weight: 700;
+         color: #fff;
           margin-bottom: 1rem;
         }
         .cta-section p {
@@ -170,9 +175,7 @@ const ConsolidationServices = () => {
             margin: 40px 20px 60px;
             padding: 50px 20px;
           }
-          .cta-section h2 {
-            font-size: 1.7rem;
-          }
+         
         }
 
         /* The rest of your existing styles remain unchanged */
@@ -182,9 +185,8 @@ const ConsolidationServices = () => {
           padding: 0 24px;
         }
 
+        /* ✅ Section title (h2) – matches global h2 size */
         .section-title {
-          font-size: 2.5rem;
-          font-weight: 700;
           color: #0b2e3e;
           text-align: center;
           margin-bottom: 1rem;
@@ -208,11 +210,11 @@ const ConsolidationServices = () => {
           gap: 4rem;
           align-items: center;
         }
-        .overview-content p {
-          font-size: 1.125rem;
-          color: #2c3e4e;
-          line-height: 1.6;
-        }
+       .overview-content p {
+  font-size: 0.95rem;
+  color: var(--ts, #3a6680);
+  line-height: 1.8;
+}
         .overview-image {
           border-radius: 1rem;
           overflow: hidden;
@@ -331,17 +333,15 @@ const ConsolidationServices = () => {
         }
 
         @media (max-width: 768px) {
-          .section-title { font-size: 2rem; }
+          /* ❌ Removed .section-title font-size override – now uses clamp */
           .container { padding: 0 20px; }
           .overview-grid { grid-template-columns: 1fr; gap: 2rem; }
         }
-        @media (max-width: 480px) {
-          .section-title { font-size: 1.8rem; }
-        }
+       
       `}</style>
 
       <div className="consolidation-page">
-        {/* Hero Section – updated with gradient and chip */}
+        {/* Hero Section */}
         <div className="consolidation-hero">
           <div className="hero-content">
             <div className="chip">Smart Consolidation</div>
@@ -353,7 +353,7 @@ const ConsolidationServices = () => {
           </div>
         </div>
 
-        {/* Overview Section – unchanged */}
+        {/* Overview Section */}
         <div className="overview-section">
           <div className="container">
             <div className="overview-grid">
@@ -373,7 +373,7 @@ const ConsolidationServices = () => {
           </div>
         </div>
 
-        {/* Services Grid – unchanged */}
+        {/* Services Grid */}
         <div className="services-section">
           <div className="container">
             <h2 className="section-title">Our Consolidation Services</h2>
@@ -405,7 +405,7 @@ const ConsolidationServices = () => {
           </div>
         </div>
 
-        {/* Image Showcase – unchanged */}
+        {/* Image Showcase */}
         <div className="image-showcase">
           <div className="container">
             <h2 className="section-title">Consolidation in Action</h2>
@@ -427,7 +427,7 @@ const ConsolidationServices = () => {
           </div>
         </div>
 
-        {/* CTA Section – modernised */}
+        {/* CTA Section */}
         <div className="container">
           <div className="cta-section">
             <h2>Ready to consolidate your shipments?</h2>

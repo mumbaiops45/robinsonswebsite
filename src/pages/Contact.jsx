@@ -142,13 +142,11 @@ const Contact = () => {
         }
 
         .contact-page {
-        
           font-family: 'Poppins', sans-serif;
           background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-          
         }
 
-        /* Hero section (matching Aboutus/Offices) */
+        /* Hero section */
         .contact-hero {
           position: relative;
           background: linear-gradient(105deg, #0b2e3e 0%, #1b4d6e 70%, #2c6e4f 100%);
@@ -156,7 +154,6 @@ const Contact = () => {
           padding: 40px 24px 100px;
           text-align: center;
           margin-top: 62px;
-        
         }
 
         .contact-hero::before {
@@ -205,13 +202,12 @@ const Contact = () => {
           animation: fadeUp 0.8s ease;
         }
 
+        /* ✅ Updated h1 to match global size */
         .hero-content h1 {
-          font-size: 4rem;
-          font-weight: 800;
-          letter-spacing: -0.02em;
           margin-bottom: 1rem;
           text-shadow: 0 2px 10px rgba(0,0,0,0.1);
           animation: fadeUp 0.8s ease 0.1s both;
+          color: #fff;
         }
 
         .hero-content p {
@@ -274,7 +270,7 @@ const Contact = () => {
           gap: 3rem;
         }
 
-        /* Cards with green border hover */
+        /* Cards */
         .form-card, .info-card, .emergency-card, .map-placeholder {
           transition: var(--transition);
         }
@@ -306,8 +302,9 @@ const Contact = () => {
           border-radius: 1rem;
         }
 
+        /* ✅ Updated card header h2 to match global h2 size */
         .card-header h2 {
-          font-size: 1.75rem;
+          font-size: clamp(1.8rem, 4.5vw, 2.8rem);
           font-weight: 700;
           color: var(--primary-dark);
         }
@@ -498,14 +495,11 @@ const Contact = () => {
           to { transform: rotate(360deg); }
         }
 
-        /* Responsive */
+        /* Responsive – no fixed h1 font-size overrides */
         @media (max-width: 968px) {
           .two-columns {
             grid-template-columns: 1fr;
             gap: 2rem;
-          }
-          .hero-content h1 {
-            font-size: 2.8rem;
           }
           .hero-content p {
             font-size: 1rem;
@@ -527,10 +521,7 @@ const Contact = () => {
             padding: 1.5rem;
           }
           .card-header h2 {
-            font-size: 1.5rem;
-          }
-          .hero-content h1 {
-            font-size: 2.2rem;
+            font-size: clamp(1.5rem, 5vw, 2rem);
           }
         }
       `}</style>
@@ -712,17 +703,6 @@ const Contact = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* <div className="emergency-card">
-                  <div className="flex">
-                    <FaGlobe size={24} color="#6a9b5a" />
-                    <h3>24/7 Emergency Support</h3>
-                  </div>
-                  <p>Critical shipments don't wait. Our dedicated team is always on standby to assist you.</p>
-                  <div className="emergency-phone">
-                    📞 +91 98765 43210 (Emergency)
-                  </div>
-                </div> */}
 
                 {/* Clickable Map */}
                 <div 

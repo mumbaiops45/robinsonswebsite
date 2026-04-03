@@ -9,7 +9,7 @@ const Automotive = () => {
       <style>{`
       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
         .automotive-page {
-        font-family: 'Poppins',sans-serif;
+          font-family: 'Poppins',sans-serif;
           color: #1a2a3a;
           background: #ffffff;
           line-height: 1.5;
@@ -24,10 +24,8 @@ const Automotive = () => {
           text-align: center;
           margin-top: 62px;
           min-height: 80vh;
-
         }
 
-        /* Additional dark overlay to ensure text contrast */
         .automotive-hero::before {
           content: '';
           position: absolute;
@@ -50,19 +48,20 @@ const Automotive = () => {
             padding: 40px 20px 60px;
           }
         }
+
+        /* ✅ Updated h1 to match global size */
         .automotive-hero h1 {
-          font-size: 3rem;
           margin-bottom: 1rem;
-          font-weight: 700;
-          letter-spacing: -0.02em;
           text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
         }
+
         .automotive-hero .tagline {
           font-size: 1.5rem;
-          font-weight: 400;
+          font-weight: 500;
           margin-bottom: 1.5rem;
           text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
         }
+
         .automotive-hero .description {
           max-width: 800px;
           margin: 0 auto;
@@ -81,14 +80,13 @@ const Automotive = () => {
           padding: 0 24px;
         }
 
-        /* Section titles */
+        /* ✅ Updated h2 to match global size */
         .section-title {
-          font-size: 2.5rem;
-          font-weight: 700;
           color: #0b2e3e;
           text-align: center;
           margin-bottom: 1rem;
         }
+
         .section-subtitle {
           text-align: center;
           color: #4a627a;
@@ -175,13 +173,11 @@ const Automotive = () => {
         .service-icon {
           font-size: 2.5rem;
           margin-bottom: 1rem;
-          display: inline-block;
           background: #f0f4f9;
           padding: 0.75rem;
           border-radius: 50%;
           width: 70px;
           height: 70px;
-          line-height: 1;
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -246,25 +242,37 @@ const Automotive = () => {
           background: #f5f5f5;
         }
 
-        /* Responsive */
+        /* Responsive – no fixed h1/h2 font-size overrides */
         @media (max-width: 768px) {
-          .air-hero h1 { font-size: 2.2rem; }
-          .air-hero .tagline { font-size: 1.2rem; }
-          .section-title { font-size: 2rem; }
-          .container { padding: 0 20px; }
-          .overview-grid { grid-template-columns: 1fr; gap: 2rem; }
-          .import-export-grid { grid-template-columns: 1fr; gap: 2rem; }
+          .automotive-hero {
+            padding: 40px 20px 60px;
+          }
+          .automotive-hero .tagline {
+            font-size: 1.2rem;
+          }
+          .automotive-hero .description {
+            font-size: 1rem;
+          }
+          .section-title {
+            /* uses clamp – no override needed */
+          }
+          .container {
+            padding: 0 20px;
+          }
+          .overview-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
           .cta-section {
             margin: 40px 20px 60px;
             padding: 50px 20px;
           }
           .cta-section h2 {
-            font-size: 1.7rem;
-          } 
+            font-size: 1.7rem; /* this is overridden by global !important, but kept for fallback */
+          }
         }
         @media (max-width: 480px) {
-          .air-hero h1 { font-size: 1.8rem; }
-          .section-title { font-size: 1.8rem; }
+          /* No overrides for h1 or .section-title – rely on clamp */
         }
       `}</style>
 

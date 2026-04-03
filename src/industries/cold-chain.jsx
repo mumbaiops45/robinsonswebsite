@@ -49,10 +49,7 @@ const ColdChain = () => {
           }
         }
         .coldchain-hero h1 {
-          font-size: 3rem;
           margin-bottom: 1rem;
-          font-weight: 700;
-          letter-spacing: -0.02em;
           text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
         }
         .coldchain-hero .tagline {
@@ -79,8 +76,7 @@ const ColdChain = () => {
         }
 
         .section-title {
-          font-size: 2.5rem;
-          font-weight: 700;
+         
           color: #0b2e3e;
           text-align: center;
           margin-bottom: 1rem;
@@ -129,6 +125,7 @@ const ColdChain = () => {
             gap: 2rem;
           }
         }
+
 
         /* Services grid */
         .services-section {
@@ -243,7 +240,6 @@ const ColdChain = () => {
           max-width: 1100px;
         }
         .cta-section h2 {
-          font-size: 2rem;
           font-weight: 700;
           margin-bottom: 1rem;
         }
@@ -276,23 +272,16 @@ const ColdChain = () => {
         }
 
         @media (max-width: 768px) {
-          .air-hero h1 { font-size: 2.2rem; }
-          .air-hero .tagline { font-size: 1.2rem; }
-          .section-title { font-size: 2rem; }
           .container { padding: 0 20px; }
           .overview-grid { grid-template-columns: 1fr; gap: 2rem; }
-          .import-export-grid { grid-template-columns: 1fr; gap: 2rem; }
           .cta-section {
             margin: 40px 20px 60px;
             padding: 50px 20px;
           }
-          .cta-section h2 {
-            font-size: 1.7rem;
-          } 
+          
         }
         @media (max-width: 480px) {
-          .air-hero h1 { font-size: 1.8rem; }
-          .section-title { font-size: 1.8rem; }
+         
         }
       `}</style>
 

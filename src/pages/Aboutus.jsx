@@ -19,78 +19,38 @@ const Aboutus = () => {
       },
       { threshold: 0.1, rootMargin: '0px 0px -20px 0px' }
     );
-
-    vmCardsRef.current.forEach((card) => {
-      if (card) observer.observe(card);
-    });
+    vmCardsRef.current.forEach((card) => { if (card) observer.observe(card); });
     if (profileImageRef.current) observer.observe(profileImageRef.current);
-    valueCardsRef.current.forEach((card) => {
-      if (card) observer.observe(card);
-    });
+    valueCardsRef.current.forEach((card) => { if (card) observer.observe(card); });
     if (ctaRef.current) observer.observe(ctaRef.current);
-
     return () => observer.disconnect();
   }, []);
 
   return (
     <>
       <style>{`
-        /* ---------- Google Fonts ---------- */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-        /* ---------- CSS Variables ---------- */
-        :root {
-          --primary-dark: #0a2b3e;
-          --primary-accent: #6a9b5a;
-          --primary-light: #eef2ff;
-          --text-dark: #1f2e3a;
-          --text-gray: #4b5f6e;
-          --bg-gray: #f9fbfd;
-          --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.05);
-          --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
-          --shadow-hover: 0 20px 35px rgba(0, 0, 0, 0.1);
-          --transition: all 0.3s ease;
-        }
-
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-
+        /* ── Page wrapper ── */
         .about-page {
           font-family: 'Poppins', sans-serif;
-          color: var(--text-dark);
+          color: var(--t, #093e5d);
           background: #fff;
           line-height: 1.5;
           overflow-x: hidden;
         }
 
-        /* Container - matches global */
-        .container {
-          max-width: 1280px;
-          margin: 0 auto;
-          padding: 0 32px;
-        }
-
-        /* Section spacing - matches global .sec */
-        .sec {
-          padding: 72px 48px;
-        }
-
-        /* Hero Section (reduced top space) */
+        /* ── Hero ── */
         .about-hero {
           position: relative;
           background: linear-gradient(105deg, #0b2e3e 0%, #1b4d6e 70%, #2c6e4f 100%);
           color: white;
           padding: 0 48px;
-          padding-top: 62px;           /* Reduced from 62px */
+          padding-top: 62px;
           text-align: center;
           overflow: hidden;
-          /* Removed min-height: 100vh and flex centering for tighter top */
-          display: block;               /* Changed from flex to block */
+          display: block;
         }
-
         .about-hero::before {
           content: '';
           position: absolute;
@@ -101,7 +61,6 @@ const Aboutus = () => {
           opacity: 0.2;
           pointer-events: none;
         }
-
         .about-hero::after {
           content: '';
           position: absolute;
@@ -114,445 +73,476 @@ const Aboutus = () => {
           filter: blur(60px);
           pointer-events: none;
         }
-
-        .hero-content {
+        .ab-hero-content {
           position: relative;
           z-index: 2;
           max-width: 800px;
           margin: 0 auto;
           width: 100%;
-          padding: 20px 0;             /* Reduced padding */
-          animation: fadeUp 0.8s ease;
+          padding: 40px 0 60px;
+          animation: abFadeUp 0.8s ease;
         }
-
-        .hero-content h1 {
-          font-size: 4rem;
+        .ab-hero-content h1 {
+          font-size: clamp(2.4rem, 4.8vw, 4.6rem);
           font-weight: 800;
           letter-spacing: -0.02em;
+          line-height: 1.1;
           margin-bottom: 1rem;
-          text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+          text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+          color: #fff;
         }
-
-        .hero-tagline {
-          font-size: 1.8rem;
-          font-weight: 500;
-          margin-bottom: 1rem;         /* Reduced from 1.5rem */
-          opacity: 0.95;
+        .ab-hero-tagline {
+          font-size: 1.5rem;
+          font-weight: 400;
+          margin-bottom: 1.5rem;
+          opacity: 0.9;
+          color: #fff;
         }
-
-        .hero-description {
-          max-width: 800px;
+        .ab-hero-desc {
+          max-width: 720px;
           margin: 0 auto;
-          font-size: 1.2rem;
-          line-height: 1.6;
-          background: rgba(0,0,0,0.15);
-          padding: 1rem 1.5rem;        /* Slightly reduced padding */
-          border-radius: 60px;
+          font-size: 1.05rem;
+          line-height: 1.7;
+          background: rgba(0,0,0,0.2);
+          padding: 1rem 1.5rem;
+          border-radius: 8px;
           backdrop-filter: blur(4px);
           font-weight: 400;
+          color: rgba(255,255,255,0.9);
         }
 
-        /* Cards base animation (unchanged) */
+        /* ── Section wrapper ── */
+        .ab-sec {
+          padding: 72px 48px;
+          box-sizing: border-box;
+          width: 100%;
+        }
+        .ab-sec-light {
+          background: var(--w2, #f7f9fc);
+        }
+        .ab-sec-white {
+          background: var(--w, #ffffff);
+        }
+        .ab-container {
+          max-width: 1280px;
+          margin: 0 auto;
+        }
+        .ab-divider {
+          border: none;
+          border-top: 1px solid var(--bd, #d8e4ed);
+          margin: 0;
+        }
+
+        /* ── Chip — matches global ── */
+        .ab-chip {
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          font-size: 0.67rem;
+          font-weight: 700;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: var(--g, #6a9b5a);
+          margin-bottom: 10px;
+        }
+        .ab-chip::before {
+          content: '';
+          width: 16px;
+          height: 2px;
+          background: var(--g, #6a9b5a);
+          border-radius: 2px;
+          flex-shrink: 0;
+        }
+
+        /* ── Section titles — matches global ── */
+        .ab-title {
+          font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+          font-weight: 700;
+          letter-spacing: -0.01em;
+          line-height: 1.3;
+          color: var(--n, #093e5d);
+          margin-bottom: 8px;
+        }
+        .ab-title .hl {
+          color: var(--g, #6a9b5a);
+        }
+        .ab-sub {
+          font-size: 0.95rem;
+          line-height: 1.8;
+          color: var(--ts, #3a6680);
+          max-width: 560px;
+          margin-bottom: 2rem;
+        }
+
+        /* ── Card reveal animation ── */
         .vm-card,
-        .value-card,
-        .profile-image,
-        .cta-section {
+        .ab-value-card,
+        .ab-profile-img,
+        .ab-cta {
           opacity: 0;
-          transform: translateY(30px);
+          transform: translateY(28px);
           transition: opacity 0.6s ease, transform 0.6s ease;
         }
-
         .vm-card.card-visible,
-        .value-card.card-visible,
-        .profile-image.card-visible,
-        .cta-section.card-visible {
+        .ab-value-card.card-visible,
+        .ab-profile-img.card-visible,
+        .ab-cta.card-visible {
           opacity: 1;
           transform: translateY(0);
         }
+        .ab-value-card:nth-child(1) { transition-delay: 0s; }
+        .ab-value-card:nth-child(2) { transition-delay: 0.08s; }
+        .ab-value-card:nth-child(3) { transition-delay: 0.16s; }
+        .ab-value-card:nth-child(4) { transition-delay: 0.24s; }
 
-        /* Stagger effect for value cards */
-        .value-card:nth-child(1) { transition-delay: 0s; }
-        .value-card:nth-child(2) { transition-delay: 0.1s; }
-        .value-card:nth-child(3) { transition-delay: 0.2s; }
-        .value-card:nth-child(4) { transition-delay: 0.3s; }
-
-        /* Vision & Mission Cards */
-        .vm-grid {
+        /* ── Vision & Mission grid ── */
+        .ab-vm-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 2.5rem;
+          gap: 0;
+          background: var(--bd, #d8e4ed);
+          border: 1px solid var(--bd, #d8e4ed);
+          margin-top: 1.5rem;
         }
-
         .vm-card {
-          background: white;
-          border-radius: 32px;
-          padding: 2.5rem;
-          box-shadow: var(--shadow-sm);
-          transition: var(--transition), opacity 0.6s ease, transform 0.6s ease;
-          border: 1px solid rgba(0,0,0,0.03);
+          background: var(--w, #ffffff);
+          padding: 2rem;
+          border-right: 1px solid var(--bd, #d8e4ed);
+          transition: all 0.3s ease, opacity 0.6s ease, transform 0.6s ease;
           position: relative;
           overflow: hidden;
+          cursor: default;
         }
-
-        .vm-card::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 4px;
-          background: linear-gradient(90deg, var(--primary-dark), var(--primary-accent));
-          transform: scaleX(0);
-          transition: transform 0.4s ease;
+        .vm-card:last-child {
+          border-right: none;
         }
-
-        .vm-card:hover {
-          transform: translateY(-8px);
-          box-shadow: var(--shadow-hover);
-        }
-
-        .vm-card:hover::after {
-          transform: scaleX(1);
-        }
-
-        .vm-icon {
-          font-size: 3.2rem;
-          margin-bottom: 1.5rem;
-          background: var(--primary-light);
-          width: 70px;
-          height: 70px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 24px;
-          color: var(--primary-accent);
-        }
-
-        .vm-card h3 {
-          font-size: 1.8rem;
-          font-weight: 700;
-          color: var(--primary-dark);
-          margin-bottom: 1rem;
-        }
-
-        .vm-card p {
-          color: var(--text-gray);
-          font-size: 1.05rem;
-          line-height: 1.6;
-          font-weight: 400;
-        }
-
-        /* Company Profile / About Grid */
-        .profile-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 4rem;
-          align-items: center;
-        }
-
-        .profile-content h2 {
-          font-size: 2.4rem;
-          font-weight: 700;
-          color: var(--primary-dark);
-          margin-bottom: 1.5rem;
-          position: relative;
-          display: inline-block;
-        }
-
-        .profile-content h2:after {
-          content: '';
-          position: absolute;
-          bottom: -12px;
-          left: 0;
-          width: 70px;
-          height: 3px;
-          background: var(--primary-accent);
-          border-radius: 3px;
-        }
-
-        .profile-content p {
-          font-size: 1.1rem;
-          color: var(--text-gray);
-          line-height: 1.6;
-          margin-bottom: 1rem;
-          font-weight: 400;
-        }
-
-        .profile-image {
-          border-radius: 28px;
-          overflow: hidden;
-          box-shadow: var(--shadow-md);
-          transition: var(--transition), opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .profile-image img {
-          width: 100%;
-          height: auto;
-          display: block;
-          transition: transform 0.5s ease;
-        }
-
-        .profile-image:hover img {
-          transform: scale(1.03);
-        }
-
-        /* Values Section */
-        .values-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-          gap: 2rem;
-          margin-top: 1rem;
-        }
-
-        .value-card {
-          background: white;
-          border-radius: 28px;
-          padding: 2rem 1.8rem;
-          text-align: center;
-          transition: var(--transition), opacity 0.6s ease, transform 0.6s ease;
-          box-shadow: var(--shadow-sm);
-          border: 1px solid rgba(0,0,0,0.03);
-          position: relative;
-          overflow: hidden;
-        }
-
-        .value-card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 20px 35px rgba(106, 155, 90, 0.15), var(--shadow-hover);
-          border-color: var(--primary-accent);
-          background: linear-gradient(to bottom, #ffffff, #fafff7);
-        }
-
-        .value-card:hover .value-icon {
-          background: #e9f5ee;
-          color: #2c7a4d;
-          transform: scale(1.05);
-        }
-
-        .value-icon {
-          font-size: 2.8rem;
-          background: var(--primary-light);
-          width: 80px;
-          height: 80px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 40px;
-          margin-bottom: 1.5rem;
-          color: var(--primary-accent);
-          transition: var(--transition);
-        }
-
-        .value-card h3 {
-          font-size: 1.5rem;
-          font-weight: 600;
-          margin-bottom: 1rem;
-          color: var(--primary-dark);
-          transition: color 0.2s ease;
-        }
-
-        .value-card:hover h3 {
-          color: var(--primary-accent);
-        }
-
-        .value-card p {
-          color: var(--text-gray);
-          font-size: 0.95rem;
-          line-height: 1.5;
-          font-weight: 400;
-          transition: color 0.2s ease;
-        }
-
-        .value-card:hover p {
-          color: #2c3e4e;
-        }
-
-        .value-card::before {
+        .vm-card::before {
           content: '';
           position: absolute;
           top: 0;
           left: 0;
-          width: 100%;
+          right: 0;
           height: 3px;
-          background: linear-gradient(90deg, var(--primary-accent), #8cb27f);
+          background: linear-gradient(90deg, var(--g, #6a9b5a), var(--g3, #8cb27f));
           transform: scaleX(0);
-          transition: transform 0.3s ease;
+          transition: transform 0.35s ease;
         }
-
-        .value-card:hover::before {
+        .vm-card:hover {
+          background: var(--w2, #f7f9fc);
+          padding-left: 2.4rem;
+        }
+        .vm-card:hover::before {
           transform: scaleX(1);
         }
-.chip {
-  display: inline-block;
-  text-align: center;
-  background: var(--primary-light);
-  color: var(--primary-dark);
-  font-size: 0.875rem;
-  font-weight: 600;
-  padding: 0.25rem 0.75rem;
-  border-radius: 30px;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
+        .ab-vm-icon {
+          font-size: 1.6rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 52px;
+          height: 52px;
+          background: var(--w2, #f7f9fc);
+          border: 1px solid var(--bd, #d8e4ed);
+          border-radius: 6px;
+          color: var(--g, #6a9b5a);
+          margin-bottom: 1rem;
+          transition: all 0.3s ease;
+        }
+        .vm-card:hover .ab-vm-icon {
+          background: var(--n, #093e5d);
+          color: var(--g3, #8cb27f);
+          border-color: var(--n, #093e5d);
+        }
+        .vm-card h3 {
+          font-size: 1rem;
+          font-weight: 700;
+          color: var(--n, #093e5d);
+          margin-bottom: 0.6rem;
+          letter-spacing: -0.01em;
+          transition: color 0.3s;
+        }
+        .vm-card p {
+          color: var(--ts, #3a6680);
+          font-size: 0.84rem;
+          line-height: 1.75;
+          transition: color 0.3s;
+        }
 
-.sec-title {
-  font-size: 2.8rem;
-  font-weight: 700;
-  text-align: center;
-  color: var(--primary-dark);
-  margin-bottom: 1rem;
-  letter-spacing: -0.01em;
-}
+        /* ── Company Profile ── */
+        .ab-profile-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+          align-items: center;
+          margin-top: 1.5rem;
+        }
+        .ab-profile-text p {
+          font-size: 0.88rem;
+          color: var(--ts, #3a6680);
+          line-height: 1.85;
+          margin-bottom: 1rem;
+        }
+        .ab-profile-text p:last-child {
+          margin-bottom: 0;
+        }
+        .ab-profile-img {
+          border-radius: 6px;
+          overflow: hidden;
+          border: 1px solid var(--bd, #d8e4ed);
+          box-shadow: 0 8px 32px rgba(11,29,58,0.08);
+          transition: all 0.3s ease, opacity 0.6s ease, transform 0.6s ease;
+        }
+        .ab-profile-img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.5s ease;
+        }
+        .ab-profile-img:hover img {
+          transform: scale(1.03);
+        }
 
-.sec-sub {
-  text-align: center;
-  font-size: 1.2rem;
-  color: var(--text-gray);
-  max-width: 700px;
-  margin: 0 auto 3rem auto;
-  font-weight: 400;
-}
-        /* CTA Section */
-        .cta-section {
-          background: linear-gradient(135deg, var(--primary-dark), var(--primary-accent));
+        /* ── Core Values grid ── */
+        .ab-values-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 0;
+          background: var(--bd, #d8e4ed);
+          border: 1px solid var(--bd, #d8e4ed);
+          margin-top: 1.5rem;
+        }
+        .ab-value-card {
+          background: var(--w, #ffffff);
+          padding: 2rem 1.5rem;
+          border-right: 1px solid var(--bd, #d8e4ed);
+          transition: all 0.32s ease, opacity 0.6s ease, transform 0.6s ease;
+          position: relative;
+          overflow: hidden;
+          cursor: default;
+        }
+        .ab-value-card:last-child {
+          border-right: none;
+        }
+        .ab-value-card::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, var(--g, #6a9b5a), var(--g3, #8cb27f));
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.35s ease;
+        }
+        .ab-value-card:hover {
+          background: var(--n, #093e5d);
+          z-index: 1;
+        }
+        .ab-value-card:hover::after {
+          transform: scaleX(1);
+        }
+        .ab-value-icon {
+          font-size: 1.6rem;
+          display: block;
+          margin-bottom: 0.75rem;
+          color: var(--g, #6a9b5a);
+          transition: transform 0.28s ease;
+        }
+        .ab-value-card:hover .ab-value-icon {
+          transform: scale(1.1);
+          color: var(--g3, #8cb27f);
+        }
+        .ab-value-card h3 {
+          font-size: 0.88rem;
+          font-weight: 700;
+          color: var(--n, #093e5d);
+          margin-bottom: 0.4rem;
+          letter-spacing: -0.01em;
+          line-height: 1.4;
+          transition: color 0.3s;
+        }
+        .ab-value-card:hover h3 {
+          color: #fff;
+        }
+        .ab-value-card p {
+          color: var(--ts, #3a6680);
+          font-size: 0.78rem;
+          line-height: 1.65;
+          transition: color 0.3s;
+        }
+        .ab-value-card:hover p {
+          color: rgba(255,255,255,0.5);
+        }
+
+        /* ── CTA ── */
+        .ab-cta-wrap {
+          padding: 0 48px 80px;
+          max-width: 1280px;
+          margin: 0 auto;
+          box-sizing: border-box;
+        }
+        .ab-cta {
+          background: linear-gradient(135deg, var(--n, #093e5d), var(--g, #6a9b5a));
           color: white;
           text-align: center;
           padding: 70px 20px;
           border-radius: 48px;
-          margin: 40px auto 80px;
-          max-width: 1100px;
           transition: opacity 0.6s ease, transform 0.6s ease;
         }
-
-        .cta-section h3 {
+        .ab-cta h3 {
           font-size: 2rem;
           font-weight: 700;
           margin-bottom: 1rem;
+          letter-spacing: -0.02em;
+          color: #fff;
         }
-
-        .cta-section p {
-          font-size: 1.1rem;
-          opacity: 0.9;
-          max-width: 600px;
-          margin: 0 auto 1.8rem;
-          font-weight: 400;
+        .ab-cta p {
+          font-size: 1rem;
+          opacity: 0.85;
+          max-width: 520px;
+          margin: 0 auto 2rem;
+          line-height: 1.75;
+          color: #fff;
         }
-
-        .cta-btn {
+        .ab-cta-btn {
           display: inline-block;
-          background: white;
-          color: var(--primary-dark);
-          padding: 12px 32px;
-          border-radius: 40px;
-          font-weight: 600;
+          background: #fff;
+          color: var(--n, #093e5d);
+          padding: 13px 32px;
+          border-radius: 4px;
+          font-weight: 700;
+          font-size: 0.85rem;
           text-decoration: none;
-          transition: var(--transition);
-          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          transition: all 0.25s ease;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+          letter-spacing: 0.01em;
         }
-
-        .cta-btn:hover {
+        .ab-cta-btn:hover {
           transform: translateY(-3px);
-          box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-          background: #f5f5f5;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+          background: #f0f4f8;
         }
 
-        @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+        /* ── Keyframes ── */
+        @keyframes abFadeUp {
+          from { opacity: 0; transform: translateY(24px); }
+          to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* Responsive */
+        /* ── Responsive ── */
         @media (max-width: 1100px) {
-          .sec {
-            padding: 60px 24px;
-          }
           .about-hero {
             padding: 0 20px;
-            padding-top: 66px;         /* Reduced from 56px */
+            padding-top: 62px;
           }
-          .hero-content h1 {
-            font-size: 3.2rem;
+          .ab-sec {
+            padding: 60px 24px;
           }
-          .hero-tagline {
-            font-size: 1.4rem;
+          .ab-cta-wrap {
+            padding: 0 24px 60px;
           }
-          .hero-description {
-            font-size: 1rem;
+          .ab-vm-grid {
+            grid-template-columns: 1fr;
           }
+          .vm-card {
+            border-right: none;
+            border-bottom: 1px solid var(--bd, #d8e4ed);
+          }
+          .vm-card:last-child {
+            border-bottom: none;
+          }
+          .ab-profile-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+          .ab-values-grid {
+            grid-template-columns: 1fr 1fr;
+          }
+          .ab-value-card:nth-child(2) { border-right: none; }
+          .ab-value-card:nth-child(1),
+          .ab-value-card:nth-child(2) { border-bottom: 1px solid var(--bd, #d8e4ed); }
+          .ab-value-card:nth-child(3) { border-right: 1px solid var(--bd, #d8e4ed); }
+          .ab-value-card:last-child { border-right: none; }
         }
 
         @media (max-width: 768px) {
-          .sec {
+          .about-hero {
+            padding-top: 56px;
+          }
+          .ab-sec {
             padding: 48px 20px;
           }
-          .hero-content h1 {
-            font-size: 2.8rem;
+          .ab-cta-wrap {
+            padding: 0 20px 48px;
           }
-          .hero-tagline {
-            font-size: 1.3rem;
+          .ab-hero-content {
+            padding: 30px 0 50px;
           }
-          .hero-description {
+          .ab-hero-tagline {
+            font-size: 1.2rem;
+          }
+          .ab-hero-desc {
             font-size: 0.95rem;
-            padding: 1rem;
+            padding: 0.85rem 1rem;
           }
-          .vm-grid {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-          }
-          .vm-card {
-            padding: 2rem;
-          }
-          .profile-grid {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            text-align: center;
-          }
-          .profile-content h2:after {
-            left: 50%;
-            transform: translateX(-50%);
-          }
-          .cta-section {
-            margin: 40px 20px 60px;
+          .ab-cta {
+            border-radius: 24px;
             padding: 50px 20px;
           }
-          .cta-section h3 {
-            font-size: 1.7rem;
+          .ab-cta h3 {
+            font-size: 1.6rem;
+          }
+          .vm-card {
+            padding: 1.5rem;
+          }
+          .ab-value-card {
+            padding: 1.5rem 1.2rem;
+          }
+        }
+
+        @media (max-width: 540px) {
+          .ab-values-grid {
+            grid-template-columns: 1fr;
+          }
+          .ab-value-card {
+            border-right: none !important;
+            border-bottom: 1px solid var(--bd, #d8e4ed) !important;
+          }
+          .ab-value-card:last-child {
+            border-bottom: none !important;
+          }
+          .ab-value-card:hover {
+            transform: none;
           }
         }
 
         @media (max-width: 480px) {
-          .hero-content h1 {
-            font-size: 2.2rem;
+          .ab-hero-tagline {
+            font-size: 1rem;
           }
-          .hero-tagline {
-            font-size: 1.1rem;
+          .ab-hero-desc {
+            font-size: 0.88rem;
           }
-          .profile-content h2 {
-            font-size: 1.8rem;
+          .ab-cta h3 {
+            font-size: 1.4rem;
           }
-          .vm-card h3 {
-            font-size: 1.5rem;
-          }
-          .value-card h3 {
-            font-size: 1.3rem;
+          .ab-cta-btn {
+            padding: 11px 24px;
+            font-size: 0.8rem;
           }
         }
       `}</style>
 
       <div className="about-page">
-        {/* Hero Section */}
+
+        {/* ── Hero ── */}
         <div className="about-hero">
-          <div className="hero-content">
+          <div className="ab-hero-content">
             <h1>About Us</h1>
-            <div className="hero-tagline">Powering Logistics Excellence</div>
-            <div className="hero-description">
+            <div className="ab-hero-tagline">Powering Logistics Excellence</div>
+            <div className="ab-hero-desc">
               Robinsons Cargo and Logistics — a leader in air, sea, and supply chain solutions.
               We drive innovation and deliver unmatched customer experiences through tailored,
               end‑to‑end logistics.
@@ -560,72 +550,48 @@ const Aboutus = () => {
           </div>
         </div>
 
-        {/* Vision & Mission Section */}
-        <div className="sec section-white">
-          <div className="container">
-            <div className="chip">Our Compass</div>
-            <h2 className="sec-title">Vision & Mission</h2>
-            <p className="sec-sub">
+        {/* ── Vision & Mission ── */}
+        <div className="ab-sec ab-sec-white">
+          <div className="ab-container">
+            <div className="ab-chip">Our Compass</div>
+            <h2 className="ab-title">
+              Vision & <span className="hl">Mission</span>
+            </h2>
+            <p className="ab-sub">
               Guided by purpose, driven by impact — shaping the future of logistics.
             </p>
-            <div className="vm-grid">
-              <div
-                className="vm-card"
-                ref={(el) => (vmCardsRef.current[0] = el)}
-              >
-                <div className="vm-icon">
-                  <FaBullseye />
-                </div>
+            <div className="ab-vm-grid">
+              <div className="vm-card" ref={(el) => (vmCardsRef.current[0] = el)}>
+                <div className="ab-vm-icon"><FaBullseye /></div>
                 <h3>Our Mission</h3>
-                <p>
-                  To deliver exceptional, reliable logistics solutions through operational excellence,
-                  cutting-edge technology, and a customer-first approach. We empower businesses
-                  to thrive by making supply chains seamless, sustainable, and scalable.
-                </p>
+                <p>To deliver exceptional, reliable logistics solutions through operational excellence, cutting-edge technology, and a customer-first approach. We empower businesses to thrive by making supply chains seamless, sustainable, and scalable.</p>
               </div>
-              <div
-                className="vm-card"
-                ref={(el) => (vmCardsRef.current[1] = el)}
-              >
-                <div className="vm-icon">
-                  <FaEye />
-                </div>
+              <div className="vm-card" ref={(el) => (vmCardsRef.current[1] = el)}>
+                <div className="ab-vm-icon"><FaEye /></div>
                 <h3>Our Vision</h3>
-                <p>
-                  To be the world’s most trusted and innovative logistics partner — connecting
-                  economies, enabling growth, and setting new standards in integrated cargo
-                  and supply chain management with integrity and foresight.
-                </p>
+                <p>To be the world's most trusted and innovative logistics partner — connecting economies, enabling growth, and setting new standards in integrated cargo and supply chain management with integrity and foresight.</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Company Profile Section */}
-        <div className="sec section-light">
-          <div className="container">
-            <div className="chip">Our Story</div>
-            <div className="profile-grid">
-              <div className="profile-content">
-                <h2>Company Profile</h2>
-                <p>
-                  For over six decades, Robinsons Cargo and Logistics has stood as a pillar of reliability
-                  in the logistics industry. Founded in 1954 with a vision to simplify complex supply chains,
-                  we now offer integrated solutions spanning air freight, ocean freight, warehousing,
-                  and supply chain management.
-                </p>
-                <p>
-                  Our nationwide presence, combined with modern technology and deep industry expertise,
-                  ensures your goods move efficiently from origin to destination — on time, every time.
-                  We don’t just move cargo; we build partnerships that drive success.
-                </p>
+        <hr className="ab-divider" />
+
+        {/* ── Company Profile ── */}
+        <div className="ab-sec ab-sec-light">
+          <div className="ab-container">
+            <div className="ab-chip">Our Story</div>
+            <h2 className="ab-title">
+              Company <span className="hl">Profile</span>
+            </h2>
+            <div className="ab-profile-grid">
+              <div className="ab-profile-text">
+                <p>For over six decades, Robinsons Cargo and Logistics has stood as a pillar of reliability in the logistics industry. Founded in 1954 with a vision to simplify complex supply chains, we now offer integrated solutions spanning air freight, ocean freight, warehousing, and supply chain management.</p>
+                <p>Our nationwide presence, combined with modern technology and deep industry expertise, ensures your goods move efficiently from origin to destination — on time, every time. We don't just move cargo; we build partnerships that drive success.</p>
               </div>
-              <div
-                className="profile-image"
-                ref={profileImageRef}
-              >
-                <img 
-                  src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+              <div className="ab-profile-img" ref={profileImageRef}>
+                <img
+                  src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
                   alt="Robinsons Cargo logistics operations"
                 />
               </div>
@@ -633,52 +599,36 @@ const Aboutus = () => {
           </div>
         </div>
 
-        {/* Values Section */}
-        <div className="sec section-white">
-          <div className="container">
-            <div className="chip">Our Principles</div>
-            <h2 className="sec-title">Core Values</h2>
-            <p className="sec-sub">
+        <hr className="ab-divider" />
+
+        {/* ── Core Values ── */}
+        <div className="ab-sec ab-sec-white">
+          <div className="ab-container">
+            <div className="ab-chip">Our Principles</div>
+            <h2 className="ab-title">
+              Core <span className="hl">Values</span>
+            </h2>
+            <p className="ab-sub">
               The principles that define our culture and guide every decision.
             </p>
-            <div className="values-grid">
-              <div
-                className="value-card"
-                ref={(el) => (valueCardsRef.current[0] = el)}
-              >
-                <div className="value-icon">
-                  <FaBolt />
-                </div>
+            <div className="ab-values-grid">
+              <div className="ab-value-card" ref={(el) => (valueCardsRef.current[0] = el)}>
+                <span className="ab-value-icon"><FaBolt /></span>
                 <h3>Operational Excellence</h3>
                 <p>Precision, efficiency, and continuous improvement in every process.</p>
               </div>
-              <div
-                className="value-card"
-                ref={(el) => (valueCardsRef.current[1] = el)}
-              >
-                <div className="value-icon">
-                  <FaHandshake />
-                </div>
+              <div className="ab-value-card" ref={(el) => (valueCardsRef.current[1] = el)}>
+                <span className="ab-value-icon"><FaHandshake /></span>
                 <h3>Integrity & Trust</h3>
                 <p>Honest partnerships, transparency, and accountability at all levels.</p>
               </div>
-              <div
-                className="value-card"
-                ref={(el) => (valueCardsRef.current[2] = el)}
-              >
-                <div className="value-icon">
-                  <FaGlobe />
-                </div>
+              <div className="ab-value-card" ref={(el) => (valueCardsRef.current[2] = el)}>
+                <span className="ab-value-icon"><FaGlobe /></span>
                 <h3>Global Mindset</h3>
                 <p>Connecting markets with culturally aware, borderless logistics.</p>
               </div>
-              <div
-                className="value-card"
-                ref={(el) => (valueCardsRef.current[3] = el)}
-              >
-                <div className="value-icon">
-                  <FaRocket />
-                </div>
+              <div className="ab-value-card" ref={(el) => (valueCardsRef.current[3] = el)}>
+                <span className="ab-value-icon"><FaRocket /></span>
                 <h3>Customer-Centric Innovation</h3>
                 <p>Forward-thinking solutions tailored to unique business needs.</p>
               </div>
@@ -686,14 +636,15 @@ const Aboutus = () => {
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className="container">
-          <div className="cta-section" ref={ctaRef}>
+        {/* ── CTA ── */}
+        <div className="ab-cta-wrap">
+          <div className="ab-cta" ref={ctaRef}>
             <h3>Ready to transform your supply chain?</h3>
             <p>Partner with Robinsons Cargo and Logistics for seamless, scalable solutions.</p>
-            <a href="/contact" className="cta-btn">Get in touch</a>
+            <a href="/contact" className="ab-cta-btn">Get in Touch</a>
           </div>
         </div>
+
       </div>
     </>
   );

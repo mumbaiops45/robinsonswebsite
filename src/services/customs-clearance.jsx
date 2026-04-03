@@ -19,18 +19,23 @@ const CustomsClearance = () => {
 
         /* Chip style (for hero) */
         .chip {
-          display: inline-block;
-          background: rgba(255,255,255,0.2);
-          backdrop-filter: blur(4px);
-          color: white;
-          font-size: 0.875rem;
-          font-weight: 600;
-          padding: 0.25rem 0.75rem;
-          border-radius: 30px;
-          margin-bottom: 1rem;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--g3, #8cb27f);
+  margin-bottom: 10px;
+}
+.chip::before {
+  content: '';
+  width: 16px;
+  height: 2px;
+  background: var(--g3, #8cb27f);
+  border-radius: 2px;
+}
 
         /* Hero section – gradient */
         .customs-hero {
@@ -86,12 +91,11 @@ const CustomsClearance = () => {
           }
         }
 
+        /* ✅ Hero h1 – matches Hero page exactly */
         .customs-hero h1 {
-          font-size: 3rem;
           margin-bottom: 1rem;
-          font-weight: 800;
-          letter-spacing: -0.02em;
           text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+          color: #fff;
         }
 
         .customs-hero .tagline {
@@ -118,7 +122,7 @@ const CustomsClearance = () => {
             margin-top: 56px;
             padding: 40px 20px 60px;
           }
-          .customs-hero h1 { font-size: 2.2rem; }
+          /* ❌ Removed fixed h1 font-size override – now uses clamp */
           .customs-hero .tagline { font-size: 1.2rem; }
           .customs-hero .description { font-size: 1rem; padding: 0.8rem 1rem; }
         }
@@ -134,9 +138,8 @@ const CustomsClearance = () => {
           max-width: 1100px;
         }
         .cta-section h2 {
-          font-size: 2rem;
-          font-weight: 700;
           margin-bottom: 1rem;
+           color: #fff;
         }
         .cta-section p {
           font-size: 1.1rem;
@@ -170,9 +173,7 @@ const CustomsClearance = () => {
             margin: 40px 20px 60px;
             padding: 50px 20px;
           }
-          .cta-section h2 {
-            font-size: 1.7rem;
-          }
+         
         }
 
         /* The rest of your existing styles remain unchanged */
@@ -182,9 +183,8 @@ const CustomsClearance = () => {
           padding: 0 24px;
         }
 
+        /* ✅ Section title (h2) – matches global h2 size */
         .section-title {
-          font-size: 2.5rem;
-          font-weight: 700;
           color: #0b2e3e;
           text-align: center;
           margin-bottom: 1rem;
@@ -208,11 +208,11 @@ const CustomsClearance = () => {
           gap: 4rem;
           align-items: center;
         }
-        .overview-content p {
-          font-size: 1.125rem;
-          color: #2c3e4e;
-          line-height: 1.6;
-        }
+       .overview-content p {
+  font-size: 0.95rem;
+  color: var(--ts, #3a6680);
+  line-height: 1.8;
+}
         .overview-image {
           border-radius: 1rem;
           overflow: hidden;
@@ -330,18 +330,12 @@ const CustomsClearance = () => {
           color: #4a627a;
         }
 
-        @media (max-width: 768px) {
-          .section-title { font-size: 2rem; }
-          .container { padding: 0 20px; }
-          .overview-grid { grid-template-columns: 1fr; gap: 2rem; }
-        }
-        @media (max-width: 480px) {
-          .section-title { font-size: 1.8rem; }
-        }
+        
+       
       `}</style>
 
       <div className="customs-page">
-        {/* Hero Section – updated with gradient and chip */}
+        {/* Hero Section */}
         <div className="customs-hero">
           <div className="hero-content">
             <div className="chip">Global Compliance</div>
@@ -353,7 +347,7 @@ const CustomsClearance = () => {
           </div>
         </div>
 
-        {/* Overview Section – unchanged */}
+        {/* Overview Section */}
         <div className="overview-section">
           <div className="container">
             <div className="overview-grid">
@@ -373,7 +367,7 @@ const CustomsClearance = () => {
           </div>
         </div>
 
-        {/* Services Grid – unchanged */}
+        {/* Services Grid */}
         <div className="services-section">
           <div className="container">
             <h2 className="section-title">Our Customs Services</h2>
@@ -405,7 +399,7 @@ const CustomsClearance = () => {
           </div>
         </div>
 
-        {/* Image Showcase – unchanged */}
+        {/* Image Showcase */}
         <div className="image-showcase">
           <div className="container">
             <h2 className="section-title">Customs in Action</h2>
@@ -429,7 +423,7 @@ const CustomsClearance = () => {
           </div>
         </div>
 
-        {/* CTA Section – modernised */}
+        {/* CTA Section */}
         <div className="container">
           <div className="cta-section">
             <h2>Need help with customs clearance?</h2>

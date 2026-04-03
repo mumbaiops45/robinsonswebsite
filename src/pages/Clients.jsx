@@ -22,12 +22,12 @@ const Clients = () => {
   return (
     <>
       <style>{`
-      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
         .clients-section {
           padding: 60px 24px;
           background: #ffffff;
-          font-family: 'Poppins',sans-serif;
+          font-family: 'Poppins', sans-serif;
         }
         .section-header {
           text-align: center;
@@ -43,8 +43,8 @@ const Clients = () => {
           border-radius: 30px;
           margin-bottom: 1rem;
         }
+        /* ✅ Removed local font-size – now uses global !important rule */
         .sec-title {
-          font-size: 2rem;
           font-weight: 700;
           color: #0b2e3e;
           margin: 0;
@@ -124,7 +124,6 @@ const Clients = () => {
           letter-spacing: -0.01em;
         }
 
-        /* Panel animation */
         .cpanel {
           transition: opacity 0.2s ease;
         }
@@ -139,9 +138,7 @@ const Clients = () => {
           .clients-section {
             padding: 40px 20px;
           }
-          .sec-title {
-            font-size: 1.8rem;
-          }
+          /* No .sec-title font-size override – uses global clamp */
           .tab-bar {
             gap: 8px;
           }

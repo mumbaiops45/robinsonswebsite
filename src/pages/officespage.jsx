@@ -86,7 +86,6 @@ const OfficesPage = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Helper to strip non‑digits for tel: links
   const getTelLink = (phone) => {
     const digits = phone.replace(/\D/g, '');
     return `tel:${digits}`;
@@ -103,7 +102,7 @@ const OfficesPage = () => {
           overflow-x: hidden;
         }
 
-        /* Hero Section (matches Aboutus & ClientPage) */
+        /* Hero Section */
         .offices-hero {
           position: relative;
           background: linear-gradient(105deg, #0b2e3e 0%, #1b4d6e 70%, #2c6e4f 100%);
@@ -158,15 +157,12 @@ const OfficesPage = () => {
           animation: fadeUp 0.8s ease;
         }
 
-        .hero-content h1 {
-          font-size: 4rem;
-          font-weight: 800;
-          letter-spacing: -0.02em;
-          margin-bottom: 1rem;
-          text-shadow: 0 2px 10px rgba(0,0,0,0.1);
-          animation: fadeUp 0.8s ease 0.1s both;
-        }
-
+        /* ✅ Updated h1 to match global size (same as Hero page) */
+       .hero-content h1 {
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  animation: fadeUp 0.8s ease 0.1s both;
+}
         .hero-tagline {
           font-size: 1.8rem;
           font-weight: 500;
@@ -234,7 +230,7 @@ const OfficesPage = () => {
           gap: 32px;
         }
 
-        /* Card Styles with green border hover */
+        /* Card Styles */
         .office-card {
           background: white;
           border-radius: 1.5rem;
@@ -254,14 +250,12 @@ const OfficesPage = () => {
           transform: translateY(0);
         }
 
-        /* Hover effect: green border & glow */
         .office-card:hover {
           transform: translateY(-8px);
           border-color: #6a9b5a;
           box-shadow: 0 20px 35px -12px rgba(106, 155, 90, 0.25), 0 4px 12px rgba(0,0,0,0.05);
         }
 
-        /* Decorative gradient border on hover (kept from original) */
         .office-card::after {
           content: '';
           position: absolute;
@@ -281,7 +275,6 @@ const OfficesPage = () => {
           opacity: 1;
         }
 
-        /* HQ & More cities cards (preserve their gradient backgrounds) */
         .office-card.hq {
           background: linear-gradient(135deg, #0b2e3e 0%, #1b4d6e 100%);
           color: white;
@@ -296,7 +289,6 @@ const OfficesPage = () => {
           background: linear-gradient(135deg, #fff, #C9A24D);
         }
 
-        /* Keep existing interior styles */
         .card-header {
           display: flex;
           align-items: center;
@@ -349,14 +341,11 @@ const OfficesPage = () => {
           opacity: 0.85;
         }
 
-        /* Responsive */
+        /* Responsive – no fixed font-size overrides for h1 */
         @media (max-width: 968px) {
           .offices-hero {
             padding: 100px 20px 80px;
             margin-top: 56px;
-          }
-          .hero-content h1 {
-            font-size: 2.8rem;
           }
           .hero-tagline {
             font-size: 1.3rem;
@@ -379,9 +368,6 @@ const OfficesPage = () => {
         @media (max-width: 640px) {
           .offices-hero {
             padding: 40px 16px 60px;
-          }
-          .hero-content h1 {
-            font-size: 2.2rem;
           }
           .hero-tagline {
             font-size: 1.1rem;

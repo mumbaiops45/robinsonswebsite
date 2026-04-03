@@ -52,10 +52,10 @@ const RenewableEnergy = () => {
           }
         }
         .renewable-hero h1 {
-          font-size: 3rem;
+           
           margin-bottom: 1rem;
-          font-weight: 700;
-          letter-spacing: -0.02em;
+         
+          
           text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
         }
         .renewable-hero .tagline {
@@ -82,8 +82,7 @@ const RenewableEnergy = () => {
         }
 
         .section-title {
-          font-size: 2.5rem;
-          font-weight: 700;
+          
           color: #0b2e3e;
           text-align: center;
           margin-bottom: 1rem;
@@ -246,7 +245,6 @@ const RenewableEnergy = () => {
           max-width: 1100px;
         }
         .cta-section h2 {
-          font-size: 2rem;
           font-weight: 700;
           margin-bottom: 1rem;
         }
@@ -290,13 +288,10 @@ const RenewableEnergy = () => {
             margin: 40px 20px 60px;
             padding: 50px 20px;
           }
-          .cta-section h2 {
-            font-size: 1.7rem;
-          } 
+          
         }
         @media (max-width: 480px) {
-          .air-hero h1 { font-size: 1.8rem; }
-          .section-title { font-size: 1.8rem; }
+          
         }
       `}</style>
 

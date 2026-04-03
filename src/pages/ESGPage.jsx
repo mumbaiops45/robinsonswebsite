@@ -21,7 +21,6 @@ const ESGPage = () => {
       { threshold: 0.1, rootMargin: '0px 0px -20px 0px' }
     );
 
-    // Observe section containers and cards
     if (sdgSectionRef.current) observer.observe(sdgSectionRef.current);
     if (envSectionRef.current) observer.observe(envSectionRef.current);
     if (socialGovernanceRef.current) observer.observe(socialGovernanceRef.current);
@@ -67,14 +66,12 @@ const ESGPage = () => {
           overflow-x: hidden;
         }
 
-        /* Container */
         .container {
           max-width: 1280px;
           margin: 0 auto;
           padding: 0 32px;
         }
 
-        /* Section spacing */
         .section {
           padding: 80px 0;
         }
@@ -87,10 +84,15 @@ const ESGPage = () => {
           background: #ffffff;
         }
 
-        /* Headings */
+        /* ✅ Global heading overrides – match Hero & other pages */
+        .hero-content h1,
+        .esg-hero .hero-content h1 {          
+          margin-bottom: 1rem;
+          text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
         .section-title {
-          font-size: 2.8rem;
-          font-weight: 700;
+        
           text-align: center;
           color: var(--primary-dark);
           margin-bottom: 1rem;
@@ -106,7 +108,6 @@ const ESGPage = () => {
           font-weight: 400;
         }
 
-        /* Chip style */
         .chip {
           display: inline-block;
           background: var(--primary-light);
@@ -120,7 +121,7 @@ const ESGPage = () => {
           letter-spacing: 0.5px;
         }
 
-        /* ---------- Hero Section (Gradient) ---------- */
+        /* Hero Section */
         .esg-hero {
           position: relative;
           background: linear-gradient(105deg, #0b2e3e 0%, #1b4d6e 70%, #2c6e4f 100%);
@@ -163,14 +164,6 @@ const ESGPage = () => {
           animation: fadeUp 0.8s ease;
         }
 
-        .hero-content h1 {
-          font-size: 4rem;
-          font-weight: 800;
-          letter-spacing: -0.02em;
-          margin-bottom: 1rem;
-          text-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
         .hero-tagline {
           font-size: 1.8rem;
           font-weight: 500;
@@ -195,9 +188,7 @@ const ESGPage = () => {
             margin-top: 56px;
             padding: 40px 20px 80px;
           }
-          .hero-content h1 {
-            font-size: 2.8rem;
-          }
+          /* No fixed h1 font-size – uses clamp */
           .hero-tagline {
             font-size: 1.3rem;
           }
@@ -208,7 +199,6 @@ const ESGPage = () => {
           }
         }
 
-        /* Animation keyframes */
         @keyframes fadeUp {
           from {
             opacity: 0;
@@ -218,12 +208,6 @@ const ESGPage = () => {
             opacity: 1;
             transform: translateY(0);
           }
-        }
-
-        /* Section visibility animation */
-        .section-visible {
-          opacity: 1 !important;
-          transform: translateY(0) !important;
         }
 
         /* Cards base animation */
@@ -335,13 +319,11 @@ const ESGPage = () => {
         .initiative-icon {
           font-size: 2.5rem;
           margin-bottom: 1rem;
-          display: inline-block;
           background: var(--primary-light);
           padding: 0.75rem;
           border-radius: 50%;
           width: 70px;
           height: 70px;
-          line-height: 1;
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -367,7 +349,7 @@ const ESGPage = () => {
           line-height: 1.5;
         }
 
-        /* ===== Redesigned Social & Governance Section ===== */
+        /* Social & Governance */
         .social-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -508,7 +490,6 @@ const ESGPage = () => {
           font-weight: 500;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
           .container {
             padding: 0 24px;
@@ -516,9 +497,7 @@ const ESGPage = () => {
           .section {
             padding: 60px 0;
           }
-          .section-title {
-            font-size: 2.2rem;
-          }
+          /* No .section-title font-size override – uses clamp */
           .sdg-grid {
             gap: 1.5rem;
           }
@@ -539,12 +518,7 @@ const ESGPage = () => {
         }
 
         @media (max-width: 480px) {
-          .section-title {
-            font-size: 1.9rem;
-          }
-          .hero-content h1 {
-            font-size: 2.2rem;
-          }
+          /* No .section-title or hero h1 overrides – uses clamp */
         }
       `}</style>
 
@@ -643,7 +617,7 @@ const ESGPage = () => {
           </div>
         </div>
 
-        {/* Social & Governance Section - Redesigned */}
+        {/* Social & Governance Section */}
         <div className="section section-white" ref={socialGovernanceRef} style={{ background: 'linear-gradient(135deg, #fafcf5 0%, #ffffff 100%)' }}>
           <div className="container">
             <div className="chip" style={{ background: 'var(--primary-light)', display: 'inline-block', margin: '0 auto 1rem', textAlign: 'center', width: 'fit-content' }}>
@@ -653,8 +627,6 @@ const ESGPage = () => {
             <p className="section-subtitle">
               Building stronger communities and responsible governance
             </p>
-
-            {/* 4‑column grid for the four main cards */}
             <div className="social-grid">
               <div className="social-card" ref={(el) => (initiativeCardsRef.current[4] = el)}>
                 <div className="social-icon">🤝</div>
@@ -677,8 +649,6 @@ const ESGPage = () => {
                 <p>Reduce, Reuse, Recycle – embedding circular practices across our operations.</p>
               </div>
             </div>
-
-            {/* Special Tree Planting Card */}
             <div className="tree-card" ref={(el) => (initiativeCardsRef.current[8] = el)}>
               <div className="tree-icon">🌱</div>
               <h3>Tree Planting Initiatives</h3>
