@@ -104,11 +104,11 @@ const RetailEcommerce = () => {
           gap: 4rem;
           align-items: center;
         }
-        .overview-content p {
-          font-size: 1.125rem;
-          color: #2c3e4e;
-          line-height: 1.6;
-        }
+       .overview-content p {
+  font-size: 0.95rem;
+  color: var(--ts, #3a6680);
+  line-height: 1.8;
+}
         .overview-image {
           border-radius: 1rem;
           overflow: hidden;
